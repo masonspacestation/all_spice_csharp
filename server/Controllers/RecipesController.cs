@@ -35,4 +35,18 @@ public class RecipesController : ControllerBase
   }
 
 
+  public ActionResult<List<Recipe>> GetAllRecipes()
+  {
+    try
+    {
+      List<Recipe> recipes = _recipesService.GetAllRecipes();
+      return Ok(recipes);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
+
 }

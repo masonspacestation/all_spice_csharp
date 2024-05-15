@@ -1,4 +1,5 @@
 
+
 namespace all_spice_csharp.Repositories;
 
 public class RecipesRepository
@@ -8,6 +9,15 @@ public class RecipesRepository
   public RecipesRepository(IDbConnection db)
   {
     _db = db;
+  }
+
+
+  private Recipe PopulateCreator(Recipe recipe, Profile profile)
+  {
+    {
+      recipe.Creator = profile;
+      return recipe;
+    }
   }
 
   internal Recipe CreateRecipe(Recipe recipeData)
@@ -33,5 +43,19 @@ public class RecipesRepository
       return recipe;
     }, recipeData).FirstOrDefault();
     return recipe;
+  }
+
+  internal List<Recipe> GetAllRecipes()
+  {
+    string sql = @"
+    SELECT
+    recipes.*,
+    accounts.*
+    FROM recipes
+
+    JOIN accounts ON accounts.id = recipes.creatorId;";
+
+    List<Recipe> recipes = _db.Query<Recipe, Profile, Recipe>(sql, PopulateCreator).ToList();
+    return recipes;
   }
 }
