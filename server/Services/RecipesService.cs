@@ -34,4 +34,19 @@ public class RecipesService
 
     return recipe;
   }
+
+  internal Recipe UpdateRecipe(int recipeId, string userId, Recipe recipeData)
+  {
+    Recipe recipeToUpdate = GetRecipeById(recipeId);
+    if (recipeToUpdate.CreatorId != userId)
+    {
+      throw new Exception($"{recipeToUpdate.Title} does not belong to you, and you can't edit it.");
+    }
+
+    recipeToUpdate.Title = recipeData.Title ?? recipeToUpdate.Title;
+    recipeToUpdate.Instructions = recipeData.Instructions ?? recipeToUpdate.Instructions;
+
+    Recipe updatedRecipe = _repository.UpdateRecipe(recipeToUpdate);
+    return updatedRecipe;
+  }
 }

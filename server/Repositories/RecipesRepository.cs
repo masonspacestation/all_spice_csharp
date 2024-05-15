@@ -1,6 +1,7 @@
 
 
 
+
 namespace all_spice_csharp.Repositories;
 
 public class RecipesRepository
@@ -73,6 +74,28 @@ public class RecipesRepository
         ;";
 
     Recipe recipe = _db.Query<Recipe, Profile, Recipe>(sql, PopulateCreator, new { recipeId }).FirstOrDefault();
+    return recipe;
+  }
+
+  internal Recipe UpdateRecipe(Recipe recipeToUpdate)
+  {
+    string sql = @"
+        UPDATE recipes
+        SET
+title = @Title,
+instructions = @Instructions
+WHERE id = @Id;
+        
+ SELECT
+        recipes.*,
+        accounts.*
+        FROM recipes
+
+        JOIN accounts ON accounts.id = recipes.creatorId
+        WHERE recipes.id = @Id
+        ;";
+
+    Recipe recipe = _db.Query<Recipe, Profile, Recipe>(sql, PopulateCreator, recipeToUpdate).FirstOrDefault();
     return recipe;
   }
 }
