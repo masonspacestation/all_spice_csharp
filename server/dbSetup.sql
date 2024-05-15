@@ -27,3 +27,20 @@ CREATE TABLE recipes (
 );
 
 DROP TABLE recipes
+
+INSERT INTO
+    recipes (
+        title,
+        instructions,
+        img,
+        category
+    )
+VALUES (
+        @Title,
+        @Instructions,
+        @Img,
+        @Category
+    )
+SELECT recipes
+WHERE
+    id = LAST_INSERT_ID();
