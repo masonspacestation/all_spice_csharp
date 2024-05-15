@@ -2,6 +2,7 @@
 
 
 
+
 namespace all_spice_csharp.Repositories;
 
 public class RecipesRepository
@@ -97,5 +98,11 @@ WHERE id = @Id;
 
     Recipe recipe = _db.Query<Recipe, Profile, Recipe>(sql, PopulateCreator, recipeToUpdate).FirstOrDefault();
     return recipe;
+  }
+
+  internal void DestroyRecipe(int recipeId)
+  {
+    string sql = "DELETE FROM recipes WHERE id = @recipeId;";
+    _db.Execute(sql, new { recipeId });
   }
 }

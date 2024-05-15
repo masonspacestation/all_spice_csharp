@@ -18,6 +18,19 @@ public class RecipesService
     return recipe;
   }
 
+  internal string DestroyRecipe(int recipeId, string userId)
+  {
+    Recipe recipeToDestroy = GetRecipeById(recipeId);
+    if (recipeToDestroy.CreatorId != userId)
+    {
+      throw new Exception($"{recipeToDestroy.Title} wasn't created by you, and thus, cannot be deleted by you.");
+    }
+
+    _repository.DestroyRecipe(recipeId);
+    return $"{recipeToDestroy.Title} has been deleted. Bon apetit!";
+
+  }
+
   internal List<Recipe> GetAllRecipes()
   {
     List<Recipe> recipes = _repository.GetAllRecipes();

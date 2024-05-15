@@ -82,4 +82,21 @@ public class RecipesController : ControllerBase
     }
   }
 
+
+  [Authorize]
+  [HttpDelete("{recipeId}")]
+  public async Task<ActionResult<Recipe>> DestroyRecipe(int recipeId)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      string message = _recipesService.DestroyRecipe(recipeId, userInfo.Id);
+      return Ok(message);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
 }
