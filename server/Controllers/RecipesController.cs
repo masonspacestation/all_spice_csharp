@@ -35,6 +35,7 @@ public class RecipesController : ControllerBase
   }
 
 
+  [HttpGet]
   public ActionResult<List<Recipe>> GetAllRecipes()
   {
     try
@@ -48,5 +49,19 @@ public class RecipesController : ControllerBase
     }
   }
 
+
+  [HttpGet("{recipeId}")]
+  public ActionResult<Recipe> GetRecipeById(int recipeId)
+  {
+    try
+    {
+      Recipe recipe = _recipesService.GetRecipeById(recipeId);
+      return Ok(recipe);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 
 }
