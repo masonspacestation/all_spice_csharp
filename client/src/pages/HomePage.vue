@@ -11,11 +11,17 @@ async function getAllRecipes() {
     await recipesService.getAllRecipes()
   } catch (error) {
     Pop.toast('Could not get recipes', 'error')
-
   }
 }
 
-
+async function getRecipeById(recipeId) {
+  try {
+    console.log(`Looking for the recipe with Id ${recipeId}`);
+    await recipesService.getRecipeById(recipeId)
+  } catch (error) {
+    Pop.toast('Could not find that recipe')
+  }
+}
 
 
 onMounted(() => {
@@ -52,12 +58,13 @@ onMounted(() => {
       </div>
     </div>
 
+
     <!-- default -->
     <div class="row">
       <div class="col-3 p-3">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis a eligendi, deserunt accusamus quae
           quam!</p>
-        <button class="btn btn-secondary text-light">Create</button>
+        <button @click="getRecipeById(4)" class="btn btn-secondary text-light">Create</button>
       </div>
       <!-- NOTE recipe card -->
       <div class="col-3 p-3 recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
