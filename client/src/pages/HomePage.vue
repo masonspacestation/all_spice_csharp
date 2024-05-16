@@ -1,9 +1,12 @@
+<!-- eslint-disable no-console -->
 <script setup>
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import Pop from "../utils/Pop.js";
 import { recipesService } from "../services/RecipesService.js";
+import { AppState } from "../AppState.js";
+import RecipeCard from "../components/RecipeCard.vue";
 
-
+const recipes = computed(() => AppState.recipes)
 
 async function getAllRecipes() {
   try {
@@ -48,10 +51,10 @@ onMounted(() => {
       <!-- NOTE active category -->
       <div class="col-2">
         <h5 class="pb-3">🍕 Dinner</h5>
-        <hr class="border-3 border-primary w-75 mx-auto my-0 ">
       </div>
       <div class="col-2">
         <h5 class="pb-3">🍿 Snacks</h5>
+        <hr class="border-3 border-primary w-75 mx-auto my-0 ">
       </div>
       <div class="col-2">
         <h5 class="pb-3">🍦 Desserts</h5>
@@ -67,20 +70,14 @@ onMounted(() => {
         <button @click="getRecipeById(4)" class="btn btn-secondary text-light">Create</button>
       </div>
       <!-- NOTE recipe card -->
-      <div class="col-3 p-3 recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
-        <i class="mdi mdi-heart-outline fs-3 text-light opacity-50 text-end"></i>
-        <h3 class="text-light">Recipe</h3>
+      <div v-for="recipe in recipes" :key="recipe.id" class="col-3 p-3">
+        <RecipeCard :recipe="recipe" />
+        <!-- <div class="recipe-card px-1 px-3 rounded rounded-3 shadow d-flex flex-column justify-content-between">
+          <i class="mdi mdi-heart-outline fs-3 text-light opacity-50 text-end"></i>
+          <h3 class="text-light">Recipe</h3>
+        </div> -->
       </div>
-      <!-- NOTE recipe card -->
-      <div class="col-3 p-3 recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
-        <i class="mdi mdi-heart-outline fs-3 text-light opacity-50 text-end"></i>
-        <h3 class="text-light">Recipe</h3>
-      </div>
-      <!-- NOTE recipe card -->
-      <div class="col-3 p-3 recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
-        <i class="mdi mdi-heart-outline fs-3 text-light opacity-50 text-end"></i>
-        <h3 class="text-light">Recipe</h3>
-      </div>
+
     </div>
 
     <!-- filtered view -->
@@ -120,12 +117,7 @@ onMounted(() => {
   }
 }
 
-.recipe-card {
-  height: 30dvh;
-  background-image: url("https://images.unsplash.com/photo-1552539618-7eec9b4d1796?q=80&w=3036&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-position: center;
-  background-size: cover;
-}
+
 
 .hero-section {
   height: 20dvh;
