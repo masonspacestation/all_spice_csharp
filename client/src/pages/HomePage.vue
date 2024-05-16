@@ -1,5 +1,26 @@
 <script setup>
+import { onMounted } from "vue";
+import Pop from "../utils/Pop.js";
+import { recipesService } from "../services/RecipesService.js";
 
+
+
+async function getAllRecipes() {
+  try {
+    console.log('going out for recipes');
+    await recipesService.getAllRecipes()
+  } catch (error) {
+    Pop.toast('Could not get recipes', 'error')
+
+  }
+}
+
+
+
+
+onMounted(() => {
+  getAllRecipes()
+})
 </script>
 
 <template>
