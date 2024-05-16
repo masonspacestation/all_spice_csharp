@@ -6,14 +6,14 @@ import Navbar from './components/Navbar.vue'
 </script>
 
 <template>
-  <header>
+  <header class="container">
     <Navbar />
   </header>
   <main>
     <router-view />
   </main>
   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+    <!-- Made with 💖 by CodeWorks -->
   </footer>
 </template>
 
