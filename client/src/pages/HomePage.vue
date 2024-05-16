@@ -64,11 +64,11 @@ onMounted(() => {
 
     <!-- default -->
     <div class="row">
-      <div class="col-3 p-3">
+      <!-- <div class="col-3 p-3">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis a eligendi, deserunt accusamus quae
           quam!</p>
         <button @click="getRecipeById(4)" class="btn btn-secondary text-light">Create</button>
-      </div>
+      </div> -->
       <!-- NOTE recipe card -->
       <div v-for="recipe in recipes" :key="recipe.id" class="col-3 p-3">
         <RecipeCard :recipe="recipe" />

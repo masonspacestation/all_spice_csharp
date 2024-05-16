@@ -40,19 +40,13 @@ CREATE TABLE ingredients (
 
 DROP TABLE recipes
 
-INSERT INTO
-    recipes (
-        title,
-        instructions,
-        img,
-        category
-    )
-VALUES (
-        @Title,
-        @Instructions,
-        @Img,
-        @Category
-    )
-SELECT recipes
-WHERE
-    id = LAST_INSERT_ID();
+CREATE TABLE favorites (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+    accountId VARCHAR(255) NOT NULL,
+    recipeId int NOT NULL,
+    FOREIGN KEY (accountId) REFERENCES accounts (id) ON DELETE CASCADE,
+    FOREIGN KEY (recipeId) REFERENCES recipes (id) ON DELETE CASCADE,
+    UNIQUE (recipeId, accountId)
+)
