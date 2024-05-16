@@ -18,7 +18,11 @@ public class IngredientsService
 
   internal Ingredient CreateIngredient(Ingredient ingredientData)
   {
-
+    Recipe recipeData = _recipesService.GetRecipeById(ingredientData.RecipeId);
+    if (ingredientData.CreatorId != recipeData.CreatorId)
+    {
+      throw new Exception($"You didn't create the {recipeData.Title} recipe, so you won't be able to add ingredients to it.");
+    }
     Ingredient ingredient = _repository.CreateIngredient(ingredientData);
     return ingredient;
   }
