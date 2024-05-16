@@ -17,11 +17,10 @@ public class RecipesRepository
 
   private Recipe PopulateCreator(Recipe recipe, Profile profile)
   {
-    {
-      recipe.Creator = profile;
-      return recipe;
-    }
+    recipe.Creator = profile;
+    return recipe;
   }
+
 
   internal Recipe CreateRecipe(Recipe recipeData)
   {
