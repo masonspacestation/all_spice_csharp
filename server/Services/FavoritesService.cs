@@ -1,3 +1,4 @@
+
 namespace all_spice_csharp.Services;
 
 
@@ -11,6 +12,9 @@ public class FavoritesService
     _repository = repository;
   }
 
-
-
+  internal FavoritedRecipe CreateFavorite(Favorite favoriteData)
+  {
+    FavoritedRecipe favorite = _repository.CreateFavorite(favoriteData);
+    return favorite;
+  }
 }

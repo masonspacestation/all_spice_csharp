@@ -1,6 +1,6 @@
 namespace all_spice_csharp.Models;
 
-public class Favoritor : RepoItem<int>
+public class Favorite : RepoItem<int>
 {
   // connects accounts to recipes
   public string AccountId { get; set; }

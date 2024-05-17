@@ -48,5 +48,13 @@ CREATE TABLE favorites (
     recipeId int NOT NULL,
     FOREIGN KEY (accountId) REFERENCES accounts (id) ON DELETE CASCADE,
     FOREIGN KEY (recipeId) REFERENCES recipes (id) ON DELETE CASCADE,
-    UNIQUE (recipeId, accountId)
-)
+    UNIQUE (accountId, recipeId)
+);
+
+INSERT INTO
+    favorites (recipeId, accountId)
+VALUES (@RecipeId, @AccountId);
+
+SELECT favorites.*, accounts.*
+FROM favorites
+    JOIN accounts ON accounts.id = favorites.accountId;

@@ -1,9 +1,9 @@
 namespace all_spice_csharp.Models;
 
 
-public class Favorited : Recipe
+public class FavoritedRecipe : Recipe
 {
   // has recipe information + account Id
-  public int FavoritedId { get; set; }
+  public int FavoriteId { get; set; }
   public string AccountId { get; set; }
 }
