@@ -16,7 +16,7 @@ recipes: [],
 activeRecipe: null,
 
 /**@type {Ingredient[]} */
-ingredients: []
+ingredients: [],
 
-
+// activeFilter: "all",
 })

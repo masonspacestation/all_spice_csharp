@@ -6,7 +6,7 @@ import { recipesService } from "../services/RecipesService.js";
 import { AppState } from "../AppState.js";
 import RecipeCard from "../components/RecipeCard.vue";
 
-const recipe = computed(() => AppState.recipes)
+// const recipe = computed(() => AppState.recipes)
 
 const filterBy = ref('all')
 
@@ -16,10 +16,10 @@ const recipes = computed(() => {
 })
 
 const filters = [
-  {
-    name: 'all',
-    title: 'All'
-  },
+  // {
+  //   name: 'all',
+  //   title: 'All'
+  // },
   {
     name: 'breakfast',
     title: 'Breakfast'
@@ -76,24 +76,21 @@ onMounted(() => {
     </div>
 
     <!-- category filters -->
-    <div class="row justify-content-center text-center mb-5 border-bottom py-0">
-      <div class="col-2">
-        <h5 class="pb-3">🍳 Breakfast</h5>
+    <div class="row justify-content-center text-center mb-1 border-bottom py-0">
+      <div v-for="filterObj in filters" :key="filterObj.name" class="col-2">
+        <div v-if="filterBy.valueOf() == filterObj.name" role="button" @click="filterBy = filterObj.name">
+          <h5 class="pb-3">{{ filterObj.title }}</h5>
+          <hr class="border-3 border-primary w-75 mx-auto my-0 ">
+        </div>
+        <div v-else role="button" @click="filterBy = filterObj.name">
+          <h5 class="pb-3">{{ filterObj.title }}</h5>
+        </div>
       </div>
-      <div class="col-2">
-        <h5 class="pb-3">🥪 Lunch</h5>
-      </div>
-      <!-- NOTE active category -->
-      <div class="col-2">
-        <h5 class="pb-3">🍕 Dinner</h5>
-      </div>
-      <div class="col-2">
-        <h5 class="pb-3">🍿 Snacks</h5>
-        <hr class="border-3 border-primary w-75 mx-auto my-0 ">
-      </div>
-      <div class="col-2">
-        <h5 class="pb-3">🍦 Desserts</h5>
-      </div>
+
+    </div>
+    <div class="row justify-content-right clear-filter-row mb-5"><small v-if="filterBy.valueOf() != 'all'"
+        class="text-end" role="button" @click="filterBy = 'all'"><i class="mdi mdi-alpha-x-circle-outline"></i> clear
+        filter</small>
     </div>
 
 
@@ -117,9 +114,8 @@ onMounted(() => {
 
     <!-- filtered view -->
     <div class="row">
-      <small><i class="mdi mdi-alpha-x-circle-outline"></i> clear filter</small>
       <p>
-        It's alllll spice alllll the time, baby 😎
+        The spice must flow 🧿
       </p>
     </div>
 
@@ -155,7 +151,10 @@ onMounted(() => {
   }
 }
 
-
+.clear-filter-row {
+  height: 1.5em;
+  ;
+}
 
 .hero-section {
   height: 20dvh;
@@ -170,18 +169,4 @@ onMounted(() => {
   // text-shadow: 0px 0px 10px black;
   // filter: contrast(.8);
 }
-
-// .hero-section {
-//   height: 20dvh;
-//   background-image:
-//   background-size: cover;
-//   background-position: center;
-
-// >img {
-//   max-width: 100%;
-//   width: 100%;
-//   object-fit: cover;
-//   object-position: center;
-//   transform: rotate(90deg);
-// }
-// }</style>
+</style>
