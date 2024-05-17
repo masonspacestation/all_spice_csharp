@@ -1,12 +1,46 @@
 <!-- eslint-disable no-console -->
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import Pop from "../utils/Pop.js";
 import { recipesService } from "../services/RecipesService.js";
 import { AppState } from "../AppState.js";
 import RecipeCard from "../components/RecipeCard.vue";
 
-const recipes = computed(() => AppState.recipes)
+const recipe = computed(() => AppState.recipes)
+
+const filterBy = ref('all')
+
+const recipes = computed(() => {
+  if (filterBy.value == 'all') return AppState.recipes
+  return AppState.recipes.filter(recipe => recipe.category == filterBy.value)
+})
+
+const filters = [
+  {
+    name: 'all',
+    title: 'All'
+  },
+  {
+    name: 'breakfast',
+    title: 'Breakfast'
+  },
+  {
+    name: 'lunch',
+    title: 'Lunch'
+  },
+  {
+    name: 'dinner',
+    title: 'Dinner'
+  },
+  {
+    name: 'snack',
+    title: 'Snack'
+  },
+  {
+    name: 'dessert',
+    title: 'Dessert'
+  },
+]
 
 async function getAllRecipes() {
   try {
@@ -25,6 +59,7 @@ async function getRecipeById(recipeId) {
     Pop.toast('Could not find that recipe')
   }
 }
+
 
 
 onMounted(() => {
