@@ -93,6 +93,9 @@ onMounted(() => {
 
 
   </section>
+  <ModalWrapper modalId="create-event-modal">
+
+  </ModalWrapper>
 </template>
 
 <style scoped lang="scss">
