@@ -79,17 +79,18 @@ onMounted(() => {
     <div class="row justify-content-center text-center mb-1 border-bottom py-0">
       <div v-for="filterObj in filters" :key="filterObj.name" class="col-2">
         <div v-if="filterBy.valueOf() == filterObj.name" role="button" @click="filterBy = filterObj.name">
-          <h5 class="pb-3">{{ filterObj.title }}</h5>
-          <hr class="border-3 border-primary w-75 mx-auto my-0 ">
+          <h5 class="py-3">{{ filterObj.title }}</h5>
+          <hr class="border-3 border-primary w-75 mx-auto my-0 py-0">
         </div>
-        <div v-else role="button" @click="filterBy = filterObj.name">
-          <h5 class="pb-3">{{ filterObj.title }}</h5>
+        <div v-else role="button" @click="filterBy = filterObj.name" class="filter-button rounded">
+          <h5 class="py-3">{{ filterObj.title }}</h5>
         </div>
       </div>
 
     </div>
-    <div class="row justify-content-right clear-filter-row mb-5"><small v-if="filterBy.valueOf() != 'all'"
-        class="text-end" role="button" @click="filterBy = 'all'"><i class="mdi mdi-alpha-x-circle-outline"></i> clear
+    <div class="row justify-content-end clear-filter-row mb-5"><small v-if="filterBy.valueOf() != 'all'"
+        class="text-end filter-button cancel-filter-button w-auto py-auto rounded" role="button"
+        @click="filterBy = 'all'"><i class="mdi mdi-close-circle-outline"></i> clear
         filter</small>
     </div>
 
@@ -149,6 +150,15 @@ onMounted(() => {
       // transform: rotate(90deg);
     }
   }
+}
+
+.filter-button:hover {
+  background-color: rgba(173, 216, 230, 0.45);
+
+}
+
+.cancel-filter-button:hover {
+  background-color: rgba(229, 138, 138, 0.2);
 }
 
 .clear-filter-row {

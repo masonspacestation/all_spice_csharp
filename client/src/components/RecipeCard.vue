@@ -12,16 +12,16 @@ const bgStyle = computed(() => `url(${props.recipe.img})`)
 
 <template>
 
-  <div class="recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
+  <div role="button" data-bs-toggle="modal" data-bs-target="#recipe-modal"
+    class="recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
     <i class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-light opacity-50 text-end"></i>
     <div class="card-cover p-2">
       <h3 class="fs-4 text-light">{{ recipe.title }}</h3>
     </div>
   </div>
-  <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#recipe-modal">Modal</button>
 
   <ModalWrapper modalId="recipe-modal">
-
+    <RecipeView :recipe="recipe" />
   </ModalWrapper>
 </template>
 
