@@ -10,9 +10,8 @@ class RecipesService{
   async getRecipeById(recipeId) {
     const response = await api.get(`api/recipes/${recipeId}`)
     console.log(`found recipe with id: ${recipeId}`, response.data);
-    const activeRecipe = new Recipe(response.data)
-    AppState.activeRecipe = activeRecipe
-    console.log("Active Recipe in AppState:", AppState.activeRecipe);
+    const recipe = new Recipe(response.data)
+    return recipe
   }
 
   async getAllRecipes(){
@@ -22,6 +21,13 @@ class RecipesService{
   AppState.recipes = recipes
   console.log('All recipes in AppState', AppState.recipes);
 }
+
+async setActiveRecipe(recipeId){
+  const activeRecipe = await this.getRecipeById(recipeId)
+  AppState.activeRecipe = activeRecipe
+  console.log("Active Recipe in AppState:", AppState.activeRecipe);
+}
+
 }
 
 

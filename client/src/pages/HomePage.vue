@@ -51,6 +51,10 @@ async function getAllRecipes() {
   }
 }
 
+async function getFavoriteRecipes() {
+
+}
+
 async function getRecipeById(recipeId) {
   try {
     console.log(`Looking for the recipe with Id ${recipeId}`);
@@ -125,8 +129,8 @@ onMounted(() => {
 
 
   </section>
-  <ModalWrapper modalId="create-event-modal">
-
+  <ModalWrapper modalId="recipe-modal">
+    <!-- <RecipeView /> -->
   </ModalWrapper>
 </template>
 

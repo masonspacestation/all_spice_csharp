@@ -1,11 +1,27 @@
 <script setup>
 import { computed } from "vue";
 import { Recipe } from "../models/Recipe.js";
+import Pop from "../utils/Pop.js";
+import { favoritesService } from "../services/FavoritesService.js";
 
 const props = defineProps({ recipe: { type: Recipe, required: true } })
 const bgStyle = computed(() => `url(${props.recipe.img})`)
 
+const recipeData = {}
 
+async function createFavoriteRecipe(recipeId) {
+  try {
+    recipeData.recipeId = recipeId
+    await favoritesService.createFavoriteRecipe(recipeData)
+  } catch (error) {
+    Pop.toast("Could not add to your favorites", "error")
+    console.error("Error adding to favorites", error)
+  }
+
+
+
+
+}
 
 </script>
 
@@ -14,15 +30,13 @@ const bgStyle = computed(() => `url(${props.recipe.img})`)
 
   <div role="button" data-bs-toggle="modal" data-bs-target="#recipe-modal"
     class="recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
-    <i class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-light opacity-50 text-end"></i>
+    <i role="button" @click="createFavoriteRecipe(recipe.id)"
+      class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-light opacity-50 text-end"></i>
     <div class="card-cover p-2">
       <h3 class="fs-4 text-light">{{ recipe.title }}</h3>
     </div>
   </div>
 
-  <ModalWrapper modalId="recipe-modal">
-    <RecipeView :recipe="recipe" />
-  </ModalWrapper>
 </template>
 
 
