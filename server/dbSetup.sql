@@ -51,10 +51,10 @@ CREATE TABLE favorites (
     UNIQUE (accountId, recipeId)
 );
 
-INSERT INTO
-    favorites (recipeId, accountId)
-VALUES (@RecipeId, @AccountId);
-
-SELECT favorites.*, accounts.*
-FROM favorites
-    JOIN accounts ON accounts.id = favorites.accountId;
+SELECT favorites.*, recipes.*, accounts.*
+FROM
+    favorites
+    JOIN recipes ON favorites.recipeId = recipes.id
+    JOIN accounts ON favorites.accountId = accounts.id
+WHERE
+    favorites.id = LAST_INSERT_ID();

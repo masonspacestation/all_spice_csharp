@@ -18,23 +18,24 @@ public class FavoritesRepository
   {
     string sql = @"
         INSERT INTO
-        favorites(favoriteId, recipeId, accountId)
-        VALUES(@FavoriteId, @RecipeId, @AccountId);
+        favorites(recipeId, accountId)
+        VALUES(@RecipeId, @AccountId);
 
         SELECT
         favorites.*,
-        recipes.*,
-        accounts.*
+        accounts.*,
+        recipes.*
         FROM favorites
-        JOIN accounts ON favorites.accountId = accounts.id
         JOIN recipes ON favorites.recipeId = recipes.id
+        JOIN accounts ON favorites.accountId = accounts.id
         WHERE favorites.id = LAST_INSERT_ID();";
 
 
-    FavoritedRecipe recipe = _db.Query<Favorite, FavoritedRecipe, FavoritedRecipe>(sql, (favorite, recipe) =>
+    FavoritedRecipe recipe = _db.Query<Favorite, FavoritorProfile, FavoritedRecipe, FavoritedRecipe>(sql, (favorite, profile, recipe) =>
     {
       recipe.FavoriteId = favorite.Id;
-      recipe.CreatorId = favorite.AccountId;
+      recipe.AccountId = profile.Id;
+      recipe.Creator = profile;
       return recipe;
     }
     , favoriteData).FirstOrDefault();

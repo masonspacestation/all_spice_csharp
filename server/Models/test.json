@@ -1,0 +1,18 @@
+{
+  "favoriteId": 10,
+  "title": "Mick's Mega Pizza",
+  "instructions": "Take your dough and cook it, then add the cheese. Boom, Pizza.",
+  "img": "https://images.unsplash.com/photo-1588315029754-2dd089d39a1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80",
+  "category": "dinner",
+  "creatorId": "662818ab0bd0398d8bf3cd62",
+  "creator": {
+    "name": "Andrew Mason",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocI9JfdgpZffz4H9dU-xomwRedOBAVoBq9cRvhAGGsRzUIIr2mr4=s96-c",
+    "id": "662818ab0bd0398d8bf3cd62",
+    "createdAt": "2024-05-14T21:31:13",
+    "updatedAt": "2024-05-14T21:31:13"
+  },
+  "id": 40,
+  "createdAt": "2024-05-17T20:00:23",
+  "updatedAt": "2024-05-17T20:00:23"
+}
