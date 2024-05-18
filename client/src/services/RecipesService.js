@@ -7,6 +7,10 @@ import { api } from "./AxiosService.js"
 
 
 class RecipesService{
+  async createRecipe(recipeData) {
+const response = await api.post('api/recipes', recipeData)
+console.log('Creating new recipe', response.data);
+  }
   async getRecipeById(recipeId) {
     const response = await api.get(`api/recipes/${recipeId}`)
     console.log(`found recipe with id: ${recipeId}`, response.data);

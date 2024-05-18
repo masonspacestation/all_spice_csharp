@@ -1,7 +1,10 @@
+<!-- eslint-disable no-console -->
 <script setup>
 import { onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { recipesService } from "../services/RecipesService.js";
+import Pop from "../utils/Pop.js";
 
 const theme = ref(loadState('theme') || 'light')
 
@@ -14,6 +17,7 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
   saveState('theme', theme.value)
 }
+
 
 </script>
 
@@ -30,12 +34,15 @@ function toggleTheme() {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <!-- <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+      <ul class="navbar-nav ms-auto">
+        <li>
+          <!-- <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
-          </router-link>
-        </li> -->
+          </router-link> -->
+          <!-- FIXME this button will turn back on to launch new recipe form modal -->
+          <!-- <button @click="createRecipe">create
+            recipe</button> -->
+        </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <div>

@@ -71,7 +71,35 @@ async function getRecipeById(recipeId) {
   }
 }
 
+// SECTION create recipe section
 
+// const recipeData = ref({
+//   title: 'title',
+//   instructions: 'instructions',
+//   img: 'https://unsplash.com',
+//   category: 'breakfast',
+// })
+
+// function resetFirstForm() {
+//   recipeData.value = {
+//     title: '',
+//     instructions: '',
+//     img: '',
+//     category: '',
+//   }
+// }
+
+// async function createRecipe() {
+//   try {
+//     const newRecipe = await recipesService.createRecipe(recipeData.value)
+//     resetFirstForm()
+//     Pop.toast('New recipe created!')
+//     console.log('New recipe!');
+//   } catch (error) {
+//     Pop.toast('Could not create recipe')
+//     console.error('Error creating recipe', 'error')
+//   }
+// }
 
 onMounted(() => {
   getAllRecipes()
@@ -86,7 +114,9 @@ onMounted(() => {
         src="https://images.unsplash.com/photo-1588959286493-eb5582aa5f39?q=80&w=2160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         class="" alt=""> -->
     </div>
-
+    <div class="row">
+      <NewRecipeFirstForm />
+    </div>
     <!-- category filters -->
     <div class="row justify-content-center text-center mb-1 border-bottom py-0">
       <div v-for="filterObj in filters" :key="filterObj.name" class="col-2">
