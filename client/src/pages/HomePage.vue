@@ -5,6 +5,7 @@ import Pop from "../utils/Pop.js";
 import { recipesService } from "../services/RecipesService.js";
 import { AppState } from "../AppState.js";
 import RecipeCard from "../components/RecipeCard.vue";
+import { accountService } from "../services/AccountService.js";
 
 // const recipe = computed(() => AppState.recipes)
 
@@ -52,6 +53,12 @@ async function getAllRecipes() {
 }
 
 async function getFavoriteRecipes() {
+  try {
+    await accountService.getFavoriteRecipes()
+  } catch (error) {
+    Pop.toast('Could not get favorite recipes', "error");
+    console.error(error);
+  }
 
 }
 
@@ -68,6 +75,7 @@ async function getRecipeById(recipeId) {
 
 onMounted(() => {
   getAllRecipes()
+  getFavoriteRecipes()
 })
 </script>
 

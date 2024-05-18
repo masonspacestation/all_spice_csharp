@@ -13,7 +13,7 @@ export class FavoritedRecipe{
 // favorite info
     this.favoriteId = data.favoriteId
     this.accountId = data.accountId
-    this.recipeId = data.recipeId
+    
 //recipe info
 this.title = data.title
 this.instructions = data.instructions

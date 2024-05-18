@@ -35,7 +35,7 @@ public class FavoritesRepository
     {
       recipe.FavoriteId = favorite.Id;
       recipe.AccountId = profile.Id;
-      recipe.Id = recipe.Id;
+      recipe.Creator = profile;
       return recipe;
     }
     , favoriteData).FirstOrDefault();

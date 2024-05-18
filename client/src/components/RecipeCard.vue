@@ -18,6 +18,10 @@ async function createFavoriteRecipe(recipeId) {
     console.error("Error adding to favorites", error)
   }
 
+  // async function deleteFavoriteRecipe(recipeId){
+
+  // }
+
 
 
 
@@ -32,6 +36,7 @@ async function createFavoriteRecipe(recipeId) {
     class="recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
     <i role="button" @click="createFavoriteRecipe(recipe.id)"
       class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-light opacity-50 text-end"></i>
+    <!-- <i role="button" @click="deleteFavoriteRecipe(recipe.id)" class="mdi mdi-heart mt-1 me-2 fs-3 text-end"></i> -->
     <div class="card-cover p-2">
       <h3 class="fs-4 text-light">{{ recipe.title }}</h3>
     </div>

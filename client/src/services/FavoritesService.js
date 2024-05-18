@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { AppState } from "../AppState.js";
 import { FavoritedRecipe } from "../models/FavoritedRecipe.js";
 import { api } from "./AxiosService.js"
