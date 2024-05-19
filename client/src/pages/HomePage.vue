@@ -10,6 +10,8 @@ import { accountService } from "../services/AccountService.js";
 // const recipe = computed(() => AppState.recipes)
 
 const filterBy = ref('all')
+// const account = computed(() => AppState.account)
+// const favoritedRecipes = computed(() => AppState.favoritedRecipes)
 
 const recipes = computed(() => {
   if (filterBy.value == 'all') return AppState.recipes
@@ -52,15 +54,16 @@ async function getAllRecipes() {
   }
 }
 
-async function getFavoriteRecipes() {
-  try {
-    await accountService.getFavoriteRecipes()
-  } catch (error) {
-    Pop.toast('Could not get favorite recipes', "error");
-    console.error(error);
-  }
+// async function getFavoriteRecipes() {
+//   try {
+//     await accountService.getFavoriteRecipes()
+//   }
+//   catch (error) {
+//     Pop.toast('Could not get favorite recipes', "error");
+//     console.error(error);
+//   }
 
-}
+// }
 
 async function getRecipeById(recipeId) {
   try {
@@ -71,39 +74,10 @@ async function getRecipeById(recipeId) {
   }
 }
 
-// SECTION create recipe section
-
-// const recipeData = ref({
-//   title: 'title',
-//   instructions: 'instructions',
-//   img: 'https://unsplash.com',
-//   category: 'breakfast',
-// })
-
-// function resetFirstForm() {
-//   recipeData.value = {
-//     title: '',
-//     instructions: '',
-//     img: '',
-//     category: '',
-//   }
-// }
-
-// async function createRecipe() {
-//   try {
-//     const newRecipe = await recipesService.createRecipe(recipeData.value)
-//     resetFirstForm()
-//     Pop.toast('New recipe created!')
-//     console.log('New recipe!');
-//   } catch (error) {
-//     Pop.toast('Could not create recipe')
-//     console.error('Error creating recipe', 'error')
-//   }
-// }
 
 onMounted(() => {
   getAllRecipes()
-  getFavoriteRecipes()
+  // getFavoriteRecipes()
 })
 </script>
 

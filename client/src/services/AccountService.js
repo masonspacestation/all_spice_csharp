@@ -1,13 +1,11 @@
+/* eslint-disable no-console */
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
+import { FavoritedRecipe } from "../models/FavoritedRecipe.js"
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class AccountService {
-  async getFavoriteRecipes() {
-    const response = await api.get('/account/favorites')
-    console.log('getting user tickets', response.data);
-  }
   async getAccount() {
     try {
       const res = await api.get('/account')
@@ -15,6 +13,14 @@ class AccountService {
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
+    this.getFavoriteRecipes()
+  }
+  async getFavoriteRecipes() {
+    const response = await api.get('/account/favorites')
+    console.log('getting user favorites', response.data);
+    const favoriteRecipes = response.data.map(favoriteData => new FavoritedRecipe(favoriteData))
+    AppState.favoritedRecipes = favoriteRecipes
+    console.log('😋 favorites', AppState.favoritedRecipes);
   }
 
 
