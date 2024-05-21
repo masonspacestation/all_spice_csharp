@@ -8,6 +8,7 @@ import { AppState } from "../AppState.js";
 import FavoriteButton from "./FavoriteButton.vue";
 import { favoritesService } from "../services/FavoritesService.js";
 import { ingredientsService } from "../services/IngredientsService.js";
+import { Modal } from "bootstrap";
 
 // const recipe = defineProps({ recipe: { type: Recipe, required: true } })
 const activeRecipe = computed(() => AppState.activeRecipe)
@@ -47,6 +48,26 @@ async function destroyRecipe(recipeId) {
     await recipesService.destroyRecipe(recipeId)
   } catch (error) {
     Pop.toast('Could not delete favorite recipe', 'error')
+    console.error(error)
+  }
+  Pop.toast("Recipe Deleted!", "success")
+  Modal.getOrCreateInstance("#recipe-modal").hide()
+}
+
+async function getIngredientById(ingredientId) {
+  try {
+    await ingredientsService.getIngredientById(ingredientId)
+  } catch (error) {
+    Pop.toast(`Could not get ingredient by ID: ${ingredientId}`)
+    console.error(error)
+  }
+}
+
+async function getFavoriteById(favoriteId) {
+  try {
+    await favoritesService.getFavoriteById(favoriteId)
+  } catch (error) {
+    Pop.toast("Could not get favorite by Id")
     console.error(error)
   }
 }
