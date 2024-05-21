@@ -152,8 +152,9 @@ async function destroyRecipe(recipeId) {
             <div class="row">
               <h4>Ingredients</h4>
               <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-2 pb-1 border-bottom border-2">
-                <h6 class="fw-bold mb-0">{{ ingredient.name }}</h6>
-                <small class="text-secondary">{{ ingredient.quantity }}</small>
+                {{ ingredient }}
+                <!-- <h6 class="fw-bold mb-0">{{ ingredient.name }}</h6>
+                <small class="text-secondary">{{ ingredient.quantity }}</small> -->
               </div>
             </div>
             <div class="row">

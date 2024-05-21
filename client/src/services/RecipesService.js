@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { AppState } from "../AppState.js";
+import { Ingredient } from "../models/Ingredient.js";
 import { Recipe } from "../models/Recipe.js";
 import { api } from "./AxiosService.js"
 
@@ -47,7 +48,7 @@ async setActiveRecipe(recipeId){
 async getRecipeIngredients(recipeId) {
   const response = await api.get(`api/recipes/${recipeId}/ingredients`)
   console.log('Getting ingredients', response.data);
-  const ingredients = response.data.map(recipeId => new Recipe(recipeId))
+  const ingredients = response.data.map(recipeId => new Ingredient(recipeId))
   AppState.ingredients = ingredients
 }
 

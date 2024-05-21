@@ -40,7 +40,7 @@ function toggleTheme() {
             About
           </router-link> -->
           <!-- FIXME this button will turn back on to launch new recipe form modal -->
-          <!-- <button @click="createRecipe">create
+          <!-- <button @click="createRecipe()">create
             recipe</button> -->
         </li>
       </ul>
