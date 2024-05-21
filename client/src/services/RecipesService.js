@@ -39,6 +39,7 @@ async destroyRecipe(recipeId){
 
 async setActiveRecipe(recipeId){
   const activeRecipe = await this.getRecipeById(recipeId)
+  // await this.getRecipeIngredients(recipeId)
   AppState.activeRecipe = activeRecipe
   console.log("Active Recipe in AppState:", AppState.activeRecipe);
 }

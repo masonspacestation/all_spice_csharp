@@ -9,11 +9,15 @@ import FavoriteButton from "./FavoriteButton.vue";
 import { favoritesService } from "../services/FavoritesService.js";
 import { ingredientsService } from "../services/IngredientsService.js";
 import { Modal } from "bootstrap";
+import AddIngredientForm from "./AddIngredientForm.vue";
 
 // const recipe = defineProps({ recipe: { type: Recipe, required: true } })
 const activeRecipe = computed(() => AppState.activeRecipe)
 const ingredients = computed(() => AppState.ingredients)
 const account = computed(() => AppState.account)
+
+// const props = defineProps({ recipe: { type: Recipe, required: true } })
+const bgStyle = computed(() => `url(${activeRecipe.value?.img})`)
 
 const recipeData = ref({
   title: '',
@@ -30,6 +34,8 @@ function resetFirstForm() {
     img: '',
   }
 }
+
+
 
 async function destroyFavoriteRecipe(favoriteId) {
   try {
@@ -109,8 +115,8 @@ async function destroyRecipe(recipeId) {
 <template>
   <div v-if="activeRecipe" class="container-fluid">
     <div class="row justify-content-between">
-      <div class="col-3">
-        <!-- <img :src="activeRecipe.img" alt=""> -->
+      <div class="col-3 overflow-hidde recipe-image">
+        <!-- <img class="recipe-image" :src="activeRecipe.img" alt=""> -->
       </div>
 
 
@@ -121,7 +127,7 @@ async function destroyRecipe(recipeId) {
           </div>
           <div class="col-2 text-end">
             <!-- <FavoriteButton /> -->
-            <div v-if="activeRecipe.creatorId = account.id">
+            <div v-if="activeRecipe.creatorId = account?.id">
               <i role="button" class="mdi mdi-dots-horizontal text-secondary fs-3"></i>
               <!-- <i role="button" @click="destroyRecipe(activeRecipe.id)"
                 class="mdi mdi-delete-outline text-danger opacity-50"></i> -->
@@ -130,7 +136,7 @@ async function destroyRecipe(recipeId) {
 
 
         </div>
-        <div class="row">
+        <div class="row mt-3">
           <div class="col-8">
             <h3>Instructions</h3>
             <p>
@@ -142,16 +148,28 @@ async function destroyRecipe(recipeId) {
                 id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required></textarea>
             </div>
           </div>
-          <div class="col-4">
-            <div class="row mt-3">
+          <div class="col-4 d-flex flex-column justify-content-between p-0">
+            <div class="row">
               <h4>Ingredients</h4>
               <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-2 pb-1 border-bottom border-2">
                 <h6 class="fw-bold mb-0">{{ ingredient.name }}</h6>
                 <small class="text-secondary">{{ ingredient.quantity }}</small>
               </div>
-              <div class="row">
-                <form @submit.prevent=""></form>
-              </div>
+            </div>
+            <div class="row">
+              <AddIngredientForm />
+              <!-- <form @submit.prevent="">
+                <div class="col-6 m-0 p-0">
+                  <label class="fs-6" for="ingredient-name">Ingredient Name</label>
+                  <input v-model="ingredientData.name" type="text" name="ingredient-name" id="ingredient-name"
+                    class="form-control" minlength="3" maxlength="50" required>
+                </div>
+                <div class="col-3 m-0 p-0">
+                  <label class="fs-6" for="ingredient-quantity">Ingredient Quantity</label>
+                  <input v-model="ingredientData.quantity" type="text" name="ingredient-quantity"
+                    id="ingredient-quantity" class="form-control" minlength="1" maxlength="50" required>
+                </div>
+              </form> -->
             </div>
           </div>
         </div>
@@ -162,4 +180,12 @@ async function destroyRecipe(recipeId) {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.recipe-image {
+  // object-position: center;
+  // object-fit: cover;
+  background-image: v-bind(bgStyle);
+  background-position: center;
+  background-size: cover;
+}
+</style>

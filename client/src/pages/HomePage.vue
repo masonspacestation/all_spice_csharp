@@ -68,12 +68,13 @@ async function getAllRecipes() {
 async function setActiveRecipe(recipeId) {
   try {
     AppState.activeRecipe = null
+    AppState.ingredients = null
     console.log(`Setting ${recipeId} to active`);
+    await recipesService.getRecipeIngredients(recipeId)
     await recipesService.setActiveRecipe(recipeId)
   } catch (error) {
     Pop.toast('Could not find that recipe')
   }
-  getIngredients(recipeId)
 }
 
 async function getIngredients(recipeId) {

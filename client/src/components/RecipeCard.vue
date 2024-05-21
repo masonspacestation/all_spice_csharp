@@ -61,18 +61,18 @@ async function createFavoriteRecipe(recipeId) {
 
 <template>
 
-  <div class="recipe-card rounded rounded-3 shadow d-flex flex-column justify-content-between">
+  <div class="recipe-card rounded rounded-3 shadow row justify-content-between">
     <!-- FIXME make the icon dynamic -->
-    <div class="row justify-content-end py-2 px-4">
+    <div class="col-12 d-flex flex-column justify-content-between p-0">
 
-      <h4 class="rounded rounded-pill w-auto p-2 bg-success text-end">🍕</h4>
-    </div>
-    <!-- <i role="button" @click="createFavoriteRecipe(recipe.id)"
-      class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-light opacity-50 text-end"></i> -->
-    <!-- v-if="favoritedRecipes.includes((favorite) => favoriteId == recipe.id)"  -->
-    <!-- <i role="button" @click="deleteFavoriteRecipe(recipe.id)" class="mdi mdi-heart mt-1 me-2 fs-3 text-end"></i> -->
-    <div class="card-cover p-2">
-      <h3 class="fs-4 text-light">{{ recipe.title }}</h3>
+      <p class="text-light rounded rounded-pill w-auto p-2 mt-2 me-2 bg-success text-end">{{ recipe.category }}</p>
+      <!-- <i role="button" @click="createFavoriteRecipe(recipe.id)"
+        class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-light opacity-50 text-end"></i> -->
+      <!-- v-if="favoritedRecipes.includes((favorite) => favoriteId == recipe.id)"  -->
+      <!-- <i role="button" @click="deleteFavoriteRecipe(recipe.id)" class="mdi mdi-heart mt-1 me-2 fs-3 text-end"></i> -->
+      <div class="card-cover rounded-bottom bg-info p-2 m-0">
+        <h3 class="fs-5 text-light">{{ recipe.title }}</h3>
+      </div>
     </div>
   </div>
 
@@ -89,6 +89,6 @@ async function createFavoriteRecipe(recipeId) {
 
 .card-cover {
   height: 30%;
-  background-color: rgba(148, 148, 148, 0.515);
+  // background-color: rgb(148, 148, 148);
 }
 </style>

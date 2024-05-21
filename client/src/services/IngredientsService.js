@@ -8,6 +8,12 @@ import { recipesService } from "./RecipesService.js";
 
 
 class IngredientsService{
+  async createIngredient(ingredientData) {
+    const response = await api.post(`api/ingredients`, ingredientData)
+    console.log("Creating ingredient", response.data);
+  const newIngredient = new Ingredient(response.data)
+  AppState.ingredients.unshift(newIngredient)
+  }
 
 
   async getIngredientById(ingredientId){
