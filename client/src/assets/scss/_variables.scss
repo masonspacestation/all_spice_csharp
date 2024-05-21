@@ -6,14 +6,34 @@
 @import "../../../node_modules/bootstrap/scss/utilities";
 
 $light-theme: (
-  "primary": #066ac9,
+  "primary": #ea9d04,
   "secondary": #6f829a,
-  "success": #0cbc87,
-  "info": #17a2b8,
-  "warning": #f7c32e,
+  "success": #3c6857,
+  "info": #0171a3,
+  "warning": #e47e01,
   "danger": #d6293e,
-  "text": #d5ddf9,
-  "page": #f4f4f4
+  "text": #303030,
+  "page": #e2ebf7,
+  "breakfast":#f4f4f4,
+  "lunch":#f4f4f4,
+  "dinner":#f4f4f4,
+  "snack":#f4f4f4,
+  "dessert":#f4f4f4,
+  "my-recipe":#f4f4f4,
+  // "primary": #066ac9,
+  // "secondary": #6f829a,
+  // "success": #0cbc87,
+  // "info": #17a2b8,
+  // "warning": #f7c32e,
+  // "danger": #d6293e,
+  // "text": #d5ddf9,
+  // "page": #f4f4f4,
+  // "breakfast":#f4f4f4,
+  // "lunch":#f4f4f4,
+  // "dinner":#f4f4f4,
+  // "snack":#f4f4f4,
+  // "dessert":#f4f4f4,
+  // "my-recipe":#f4f4f4,
 );
 
 $dark-theme: (

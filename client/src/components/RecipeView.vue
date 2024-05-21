@@ -1,6 +1,6 @@
 <!-- eslint-disable no-console -->
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { Recipe } from "../models/Recipe.js";
 import { recipesService } from "../services/RecipesService.js";
 import Pop from "../utils/Pop.js";
@@ -12,8 +12,24 @@ import { Modal } from "bootstrap";
 
 // const recipe = defineProps({ recipe: { type: Recipe, required: true } })
 const activeRecipe = computed(() => AppState.activeRecipe)
+const ingredients = computed(() => AppState.ingredients)
 const account = computed(() => AppState.account)
 
+const recipeData = ref({
+  title: '',
+  category: '',
+  instructions: 'wake up, make coffee, boom! breakfast!',
+  img: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+})
+
+function resetFirstForm() {
+  recipeData.value = {
+    title: '',
+    category: '',
+    instructions: '',
+    img: '',
+  }
+}
 
 async function destroyFavoriteRecipe(favoriteId) {
   try {
@@ -54,23 +70,23 @@ async function destroyRecipe(recipeId) {
   Modal.getOrCreateInstance("#recipe-modal").hide()
 }
 
-async function getIngredientById(ingredientId) {
-  try {
-    await ingredientsService.getIngredientById(ingredientId)
-  } catch (error) {
-    Pop.toast(`Could not get ingredient by ID: ${ingredientId}`)
-    console.error(error)
-  }
-}
+// async function getIngredientById(ingredientId) {
+//   try {
+//     await ingredientsService.getIngredientById(ingredientId)
+//   } catch (error) {
+//     Pop.toast(`Could not get ingredient by ID: ${ingredientId}`)
+//     console.error(error)
+//   }
+// }
 
-async function getFavoriteById(favoriteId) {
-  try {
-    await favoritesService.getFavoriteById(favoriteId)
-  } catch (error) {
-    Pop.toast("Could not get favorite by Id")
-    console.error(error)
-  }
-}
+// async function getFavoriteById(favoriteId) {
+//   try {
+//     await favoritesService.getFavoriteById(favoriteId)
+//   } catch (error) {
+//     Pop.toast("Could not get favorite by Id")
+//     console.error(error)
+//   }
+// }
 
 
 
@@ -93,24 +109,53 @@ async function getFavoriteById(favoriteId) {
 <template>
   <div v-if="activeRecipe" class="container-fluid">
     <div class="row justify-content-between">
-      <div class="col-6">
-        <h2>{{ activeRecipe.title }}</h2>
+      <div class="col-3">
+        <!-- <img :src="activeRecipe.img" alt=""> -->
       </div>
-      <div class="col-2 text-end">
-        <FavoriteButton />
-      </div>
-      <div class="row">
-        <div class="col-8">
-          <p>
-            {{ activeRecipe.instructions }}
-          </p>
+
+
+      <div class="col-9">
+        <div class="row justify-content-between">
+          <div class="col-9">
+            <h2>{{ activeRecipe.title }}</h2>
+          </div>
+          <div class="col-2 text-end">
+            <!-- <FavoriteButton /> -->
+            <div v-if="activeRecipe.creatorId = account.id">
+              <i role="button" class="mdi mdi-dots-horizontal text-secondary fs-3"></i>
+              <!-- <i role="button" @click="destroyRecipe(activeRecipe.id)"
+                class="mdi mdi-delete-outline text-danger opacity-50"></i> -->
+            </div>
+          </div>
+
+
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div v-if="activeRecipe.creatorId = account.id">
-        <i role="button" @click="destroyRecipe(activeRecipe.id)"
-          class="mdi mdi-delete-outline text-danger opacity-50"></i>
+        <div class="row">
+          <div class="col-8">
+            <h3>Instructions</h3>
+            <p>
+              {{ activeRecipe.instructions }}
+            </p>
+            <div class="">
+              <label for="recipe-instructions"></label>
+              <textarea v-model="recipeData.instructions" type="text" rows="6" name="recipe-instructions"
+                id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required></textarea>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="row mt-3">
+              <h4>Ingredients</h4>
+              <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-2 pb-1 border-bottom border-2">
+                <h6 class="fw-bold mb-0">{{ ingredient.name }}</h6>
+                <small class="text-secondary">{{ ingredient.quantity }}</small>
+              </div>
+              <div class="row">
+                <form @submit.prevent=""></form>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

@@ -30,23 +30,28 @@ const filters = [
   // },
   {
     name: 'breakfast',
-    title: 'Breakfast'
+    title: 'Breakfast',
+    icon: '🍳',
   },
   {
     name: 'lunch',
-    title: 'Lunch'
+    title: 'Lunch',
+    icon: '🥪',
   },
   {
     name: 'dinner',
-    title: 'Dinner'
+    title: 'Dinner',
+    icon: '🍕',
   },
   {
     name: 'snack',
-    title: 'Snack'
+    title: 'Snack',
+    icon: '🍿',
   },
   {
     name: 'dessert',
-    title: 'Dessert'
+    title: 'Dessert',
+    icon: '🍦',
   },
 ]
 
@@ -73,6 +78,7 @@ async function setActiveRecipe(recipeId) {
 
 async function getIngredients(recipeId) {
   try {
+    AppState.ingredients = null
     await recipesService.getRecipeIngredients(recipeId)
   } catch (error) {
     Pop.toast('Could not get ingredients', 'error')

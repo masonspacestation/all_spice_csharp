@@ -9,7 +9,7 @@ import { Modal } from "bootstrap";
 const recipeData = ref({
   title: '',
   category: '',
-  instructions: 'wake up, make coffee, boom! breakfast!',
+  // instructions: 'wake up, make coffee, boom! breakfast!',
   img: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 })
 
@@ -17,7 +17,7 @@ function resetFirstForm() {
   recipeData.value = {
     title: '',
     category: '',
-    instructions: '',
+    // instructions: '',
     img: '',
   }
 }
@@ -77,11 +77,11 @@ async function createRecipe() {
 
       </div>
       <div class="row">
-        <div class="col-8">
+        <!-- <div class="col-8">
           <label for="recipe-instructions"></label>
           <textarea v-model="recipeData.instructions" type="text" rows="6" name="recipe-instructions"
             id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required></textarea>
-        </div>
+        </div> -->
         <div class="col-4">
           <label for="recipe-img"></label>
           <input v-model="recipeData.img" type="text" name="recipe-img" id="recipe-img" class="form-control mb-1"
