@@ -2,7 +2,20 @@ import { Account } from "./Account.js"
 import { Ingredient } from "./Ingredient.js"
 
 
-
+function getIcon(category){
+  switch(category){
+    case "breakfast":
+      return "🍳";
+      case "lunch":
+        return "🥪";
+        case "dinner":
+          return "🍕";
+        case "snack":
+          return "🍿";
+        case "dessert":
+          return "🍦";
+  }
+}
 
 export class Recipe{
   constructor(data){
@@ -10,6 +23,7 @@ export class Recipe{
     this.instructions = data.instructions
     this.img = data.img
     this.category = data.category
+    this.icon = data.icon ? data.icon : getIcon(data.category)
 
     this.id = data.id
     this.creatorId = data.creatorId

@@ -9,6 +9,7 @@ import { AppState } from "../AppState.js";
 const props = defineProps({ recipe: { type: Recipe, required: true } })
 const bgStyle = computed(() => `url(${props.recipe.img})`)
 const favoritedRecipes = computed(() => AppState.favoritedRecipes)
+const account = computed(() => AppState.account)
 
 const recipeData = {}
 const filterBy = ref('all')
@@ -64,8 +65,11 @@ async function createFavoriteRecipe(recipeId) {
   <div class="recipe-card rounded rounded-3 shadow row justify-content-between">
     <!-- FIXME make the icon dynamic -->
     <div class="col-12 d-flex flex-column justify-content-between p-0">
+      <div class="category-icon rounded rounded-pill p-2 mt-3 ms-3 bg-success">
+        <h3 class="d-inline mx-1">{{ recipe.icon }}</h3>
+        <h3 v-if="recipe.creatorId == account?.id" class="d-inline mx-1">🤌</h3>
 
-      <p class="text-light rounded rounded-pill w-auto p-2 mt-2 me-2 bg-success text-end">{{ recipe.category }}</p>
+      </div>
       <!-- <i role="button" @click="createFavoriteRecipe(recipe.id)"
         class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-light opacity-50 text-end"></i> -->
       <!-- v-if="favoritedRecipes.includes((favorite) => favoriteId == recipe.id)"  -->
@@ -90,5 +94,9 @@ async function createFavoriteRecipe(recipeId) {
 .card-cover {
   height: 30%;
   // background-color: rgb(148, 148, 148);
+}
+
+.category-icon {
+  width: max-content;
 }
 </style>
