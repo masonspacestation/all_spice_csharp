@@ -9,9 +9,23 @@ import { api } from "./AxiosService.js"
 
 class FavoritesService{
   async destroyFavoriteRecipe(favoriteId) {
+const favorites = AppState.favoritedRecipes;
+const favoriteIndex = favorites.findIndex(favorite => favorite.id == favoriteId)
+
     const response = await api.delete(`api/favorites/${favoriteId}`)
-    console.log(`Deleting favorite`, response.data);
+    console.log(`Favorite to delete`, response.data);
+
+    if(favoriteIndex == -1) throw new Error("Find by index for favorites needs adjusted")
+      favorites.splice(favoriteIndex, 1)
   }
+
+async getFavoriteById(favoriteId){
+  const response = await api.get(`api/favorites/${favoriteId}`)
+  console.log('Finding favorite', response.data);
+  const favorite = new FavoritedRecipe(response.data)
+  return favorite
+}
+
   async createFavoriteRecipe(recipeId) {
     const response = await api.post('api/favorites', recipeId)
     console.log('favorite', response.data);

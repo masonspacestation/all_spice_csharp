@@ -22,9 +22,9 @@ async destroyRecipe(recipeId){
   const recipes = AppState.recipes
   const recipeIndex = recipes.findIndex(recipe => recipe.id == recipeId)
   const response = await api.delete(`api/recipes/${recipeId}`)
-  console.log(`deleting recipe ${recipeId}`, response.data);
-
+  
   if(recipeIndex == -1) throw new Error('findIndex needs adjusted')
+    console.log(`deleting recipe ${recipeId}`, response.data);
     recipes.splice(recipeIndex, 1)
   
 }

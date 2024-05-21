@@ -7,6 +7,7 @@ import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
 import FavoriteButton from "./FavoriteButton.vue";
 import { favoritesService } from "../services/FavoritesService.js";
+import { ingredientsService } from "../services/IngredientsService.js";
 
 // const recipe = defineProps({ recipe: { type: Recipe, required: true } })
 const activeRecipe = computed(() => AppState.activeRecipe)
@@ -15,10 +16,25 @@ const account = computed(() => AppState.account)
 
 async function destroyFavoriteRecipe(favoriteId) {
   try {
+    const wantsToDestroy = await Pop.confirm("Are you sure you want to delete this favorite recipe?")
+    if (!wantsToDestroy) return
+
     await favoritesService.destroyFavoriteRecipe(favoriteId)
   } catch (error) {
     Pop.toast('Could not delete favorite recipe', 'error')
     console.error(error)
+  }
+}
+
+async function destroyIngredient(ingredientId) {
+  try {
+    const wantsToDestroy = await Pop.confirm("Are you sure you want to delete this ingredient? It might change the flavor or consistency of your dish.")
+    if (!wantsToDestroy) return
+
+    await ingredientsService.destroyIngredient(ingredientId)
+  } catch (error) {
+    Pop.toast('Could not delete ingredient', 'error')
+    console.error(error);
   }
 }
 
