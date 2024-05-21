@@ -37,11 +37,14 @@ public class RecipesRepository
         JOIN accounts ON accounts.id = recipes.creatorId
         WHERE recipes.id = LAST_INSERT_ID();";
 
-    Recipe recipe = _db.Query<Recipe, Profile, Recipe>(sql, (recipe, profile) =>
-    {
-      recipe.Creator = profile;
-      return recipe;
-    }, recipeData).FirstOrDefault();
+    //   Recipe recipe = _db.Query<Recipe, Profile, Recipe>(sql, (recipe, profile) =>
+    //   {
+    //     recipe.Creator = profile;
+    //     return recipe;
+    //   }, recipeData).FirstOrDefault();
+    //   return recipe;
+    // }
+    Recipe recipe = _db.Query<Recipe, Profile, Recipe>(sql, PopulateCreator, recipeData).FirstOrDefault();
     return recipe;
   }
 

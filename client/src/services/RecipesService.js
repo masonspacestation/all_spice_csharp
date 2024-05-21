@@ -18,6 +18,17 @@ console.log('Creating new recipe', response.data);
     return recipe
   }
 
+async destroyRecipe(recipeId){
+  const recipes = AppState.recipes
+  const recipeIndex = recipes.findIndex(recipe => recipe.id == recipeId)
+  const response = await api.delete(`api/recipes/${recipeId}`)
+  console.log(`deleting recipe ${recipeId}`, response.data);
+
+  if(recipeIndex == -1) throw new Error('findIndex needs adjusted')
+    recipes.splice(recipeIndex, 1)
+  
+}
+
   async getAllRecipes(){
   const response = await api.get('api/recipes')
   console.log('retrieved all recipes 😋', response.data);
@@ -32,7 +43,14 @@ async setActiveRecipe(recipeId){
   console.log("Active Recipe in AppState:", AppState.activeRecipe);
 }
 
+async getRecipeIngredients(recipeId) {
+  const response = await api.get(`api/recipes/${recipeId}/ingredients`)
+  console.log('Getting ingredients', response.data);
+  const ingredients = response.data.map(recipeId => new Recipe(recipeId))
+  AppState.ingredients = ingredients
+}
+
 }
 
 
-export const recipesService = new RecipesService
+export const recipesService = new RecipesService()

@@ -6,6 +6,11 @@ import { recipesService } from "../services/RecipesService.js";
 import { AppState } from "../AppState.js";
 import RecipeCard from "../components/RecipeCard.vue";
 import { accountService } from "../services/AccountService.js";
+import { Modal } from "bootstrap";
+import ModalWrapper from "../components/ModalWrapper.vue";
+import NewRecipeFirstForm from "../components/NewRecipeFirstForm.vue";
+import RecipeView from "../components/RecipeView.vue";
+import { ingredientsService } from "../services/IngredientsService.js";
 
 // const recipe = computed(() => AppState.recipes)
 
@@ -54,6 +59,25 @@ async function getAllRecipes() {
   }
 }
 
+
+async function setActiveRecipe(recipeId) {
+  try {
+    AppState.activeRecipe = null
+    console.log(`Setting ${recipeId} to active`);
+    await recipesService.setActiveRecipe(recipeId)
+  } catch (error) {
+    Pop.toast('Could not find that recipe')
+  }
+  getIngredients(recipeId)
+}
+
+async function getIngredients(recipeId) {
+  try {
+    await recipesService.getRecipeIngredients(recipeId)
+  } catch (error) {
+    Pop.toast('Could not get ingredients', 'error')
+  }
+}
 // async function getFavoriteRecipes() {
 //   try {
 //     await accountService.getFavoriteRecipes()
@@ -65,14 +89,7 @@ async function getAllRecipes() {
 
 // }
 
-async function getRecipeById(recipeId) {
-  try {
-    console.log(`Looking for the recipe with Id ${recipeId}`);
-    await recipesService.getRecipeById(recipeId)
-  } catch (error) {
-    Pop.toast('Could not find that recipe')
-  }
-}
+
 
 
 onMounted(() => {
@@ -89,7 +106,8 @@ onMounted(() => {
         class="" alt=""> -->
     </div>
     <div class="row">
-      <NewRecipeFirstForm />
+      <button class="btn btn-primary rounded rounded-pill w-auto text-end" data-bs-toggle="modal"
+        data-bs-target="#create-recipe-modal">+</button>
     </div>
     <!-- category filters -->
     <div class="row justify-content-center text-center mb-1 border-bottom py-0">
@@ -113,18 +131,13 @@ onMounted(() => {
 
     <!-- default -->
     <div class="row">
-      <!-- <div class="col-3 p-3">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis a eligendi, deserunt accusamus quae
-          quam!</p>
-        <button @click="getRecipeById(4)" class="btn btn-secondary text-light">Create</button>
-      </div> -->
+
       <!-- NOTE recipe card -->
-      <div v-for="recipe in recipes" :key="recipe.id" class="col-3 p-3">
-        <RecipeCard :recipe="recipe" />
-        <!-- <div class="recipe-card px-1 px-3 rounded rounded-3 shadow d-flex flex-column justify-content-between">
-          <i class="mdi mdi-heart-outline fs-3 text-light opacity-50 text-end"></i>
-          <h3 class="text-light">Recipe</h3>
-        </div> -->
+      <div v-for="recipe in recipes" :key="recipe.id" class="col-3 p-3" role="button" data-bs-toggle="modal"
+        data-bs-target="#recipe-modal">
+        <RecipeCard :recipe="recipe" @click="setActiveRecipe(recipe.id)" />
+
+
       </div>
 
     </div>
@@ -141,8 +154,12 @@ onMounted(() => {
 
 
   </section>
+  <ModalWrapper modalId="create-recipe-modal">
+    <NewRecipeFirstForm />
+  </ModalWrapper>
+
   <ModalWrapper modalId="recipe-modal">
-    <!-- <RecipeView /> -->
+    <RecipeView />
   </ModalWrapper>
 </template>
 

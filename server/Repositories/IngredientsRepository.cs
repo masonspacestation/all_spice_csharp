@@ -18,7 +18,7 @@ public class IngredientsRepository
 
   private Ingredient PopulateCreator(Ingredient ingredient, Profile profile)
   {
-    ingredient.Creator = profile;
+    ingredient.CreatorId = profile.Id;
     return ingredient;
   }
   internal Ingredient CreateIngredient(Ingredient ingredientData)
@@ -36,7 +36,12 @@ public class IngredientsRepository
         WHERE ingredients.id = LAST_INSERT_ID()
 
         ;";
-    Ingredient ingredient = _db.Query<Ingredient, Profile, Ingredient>(sql, PopulateCreator, ingredientData).FirstOrDefault();
+    // Ingredient ingredient = _db.Query<Ingredient, Profile, Ingredient>(sql, PopulateCreator, ingredientData).FirstOrDefault();
+    Ingredient ingredient = _db.Query<Ingredient, Profile, Ingredient>(sql, (ingredient, profile) =>
+    {
+      ingredient.CreatorId = profile.Id;
+      return ingredient;
+    }, ingredientData).FirstOrDefault();
     return ingredient;
   }
 
@@ -45,16 +50,21 @@ public class IngredientsRepository
     string sql = @"
         SELECT
         ingredients.*,
-        accounts.*
+        recipes.*
         FROM
         ingredients
 
-JOIN accounts ON ingredients.creatorId = accounts.id
-WHERE ingredients.RecipeId = @recipeId
+JOIN recipes ON recipes.id = ingredients.recipeId
+WHERE ingredients.recipeId = @recipeId
         ;";
 
-    List<Ingredient> ingredients = _db.Query<Ingredient, Profile, Ingredient>(sql, PopulateCreator, new { recipeId }).ToList();
+    List<Ingredient> ingredients = _db.Query<Ingredient, Recipe, Ingredient>(sql, (ingredient, recipe) =>
+    {
+      ingredient.RecipeId = recipe.Id;
+      return ingredient;
+    }, new { recipeId }).ToList();
     return ingredients;
+
   }
 
   internal Ingredient GetIngredientById(int ingredientId)

@@ -3,6 +3,7 @@
 import { ref } from "vue";
 import { recipesService } from "../services/RecipesService.js";
 import Pop from "../utils/Pop.js";
+import { Modal } from "bootstrap";
 
 
 const recipeData = ref({
@@ -21,17 +22,27 @@ function resetFirstForm() {
   }
 }
 
+// const imgPreview = ref({
+//   recipeData.value.img
+// })
+
 async function createRecipe() {
   try {
     const newRecipe = await recipesService.createRecipe(recipeData.value)
-    resetFirstForm()
+    Modal.getOrCreateInstance('#new-recipe-modal').hide()
     Pop.toast('New recipe created!')
     console.log('New recipe!');
   } catch (error) {
     Pop.toast('Could not create recipe')
     console.error('Error creating recipe', 'error')
   }
+  resetFirstForm()
 }
+
+// async function modalCancel() {
+//   resetFirstForm()
+//   Modal.getOrCreateInstance('#new-recipe-modal').hide()
+// }
 
 </script>
 
@@ -40,6 +51,11 @@ async function createRecipe() {
   <div class="container">
     <form @submit.prevent="createRecipe">
       <div class="row">
+        <div class="modal-header">
+          <h3>
+            Create your own recipe!
+          </h3>
+        </div>
         <div class="col-8">
           <label for="recipe-title"></label>
           <input v-model="recipeData.title" type="text" name="recipe-title" id="recipe-title" class="form-control"
@@ -61,8 +77,22 @@ async function createRecipe() {
 
       </div>
       <div class="row">
+        <div class="col-8">
+          <label for="recipe-instructions"></label>
+          <textarea v-model="recipeData.instructions" type="text" rows="6" name="recipe-instructions"
+            id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required></textarea>
+        </div>
+        <div class="col-4">
+          <label for="recipe-img"></label>
+          <input v-model="recipeData.img" type="text" name="recipe-img" id="recipe-img" class="form-control mb-1"
+            minlength="3" maxlength="1000" required>
+          <img :src="recipeData.img" alt="" class="img-preview rounded">
+        </div>
+      </div>
+      <div class="row">
 
-        <div class="col-6 my-3 p-3"><button type="reset" class="btn btn-secondary w-100">Cancel</button></div>
+        <div class="col-6 my-3 p-3"><button type="reset" data-bs-toggle="modal" data-bs-target="modal"
+            class="btn btn-secondary w-100">Cancel</button></div>
         <div class="col-6 my-3 p-3"><button class="btn btn-primary w-100">Create Recipe</button>
         </div>
       </div>
@@ -73,4 +103,10 @@ async function createRecipe() {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.img-preview {
+  width: 100%;
+  max-height: 12dvh;
+  object-fit: cover;
+}
+</style>

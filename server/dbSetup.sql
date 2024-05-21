@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS accounts (
     picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8mb4 COMMENT '';
 
+SELECT * FROM accounts;
+
 CREATE TABLE recipes (
     id INT NOT NULL AUTO_INCREMENT primary key,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -26,6 +28,10 @@ CREATE TABLE recipes (
     FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
 );
 
+DROP TABLE recipes;
+
+SELECT * FROM recipes;
+
 CREATE TABLE ingredients (
     id INT NOT NULL AUTO_INCREMENT primary key,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -38,7 +44,9 @@ CREATE TABLE ingredients (
     FOREIGN KEY (recipeId) REFERENCES recipes (id) ON DELETE CASCADE
 );
 
-DROP TABLE recipes
+SELECT * FROM ingredients;
+
+DROP TABLE ingredients
 
 CREATE TABLE favorites (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -58,3 +66,5 @@ FROM
     JOIN accounts ON favorites.accountId = accounts.id
 WHERE
     favorites.id = LAST_INSERT_ID();
+
+DROP TABLE favorites

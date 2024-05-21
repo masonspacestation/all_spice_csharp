@@ -9,11 +9,6 @@ defineProps({ modalId: String })
     aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl w-75" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h3>
-            Pizza!
-          </h3>
-        </div>
 
         <div class="modal-body">
           <slot>

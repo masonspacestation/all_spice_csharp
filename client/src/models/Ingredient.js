@@ -13,6 +13,6 @@ export class Ingredient{
     this.name = data.name
     this.quantity = data.quantity
     this.recipeId = data.recipeId
-    this.creator = data.creator? new Account(data.creator) : null
+    // this.creator = data.creator? new Account(data.creator) : null
   }
 }
