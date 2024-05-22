@@ -151,27 +151,27 @@ async function destroyRecipe(recipeId) {
           <div class="col-4 d-flex flex-column justify-content-between p-0">
             <div class="row">
               <h4>Ingredients</h4>
-              <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-2 pb-1 border-bottom border-2">
-                {{ ingredient }}
-                <!-- <h6 class="fw-bold mb-0">{{ ingredient.name }}</h6>
-                <small class="text-secondary">{{ ingredient.quantity }}</small> -->
+              <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-2">
+                <h6 class="fw-bold mb-0">{{ ingredient.name }}</h6>
+                <small class="text-secondary">{{ ingredient.quantity }}</small>
+                <hr class="border-1 mt-0">
               </div>
             </div>
-            <div class="row">
-              <AddIngredientForm />
-              <!-- <form @submit.prevent="">
-                <div class="col-6 m-0 p-0">
-                  <label class="fs-6" for="ingredient-name">Ingredient Name</label>
-                  <input v-model="ingredientData.name" type="text" name="ingredient-name" id="ingredient-name"
-                    class="form-control" minlength="3" maxlength="50" required>
-                </div>
-                <div class="col-3 m-0 p-0">
-                  <label class="fs-6" for="ingredient-quantity">Ingredient Quantity</label>
-                  <input v-model="ingredientData.quantity" type="text" name="ingredient-quantity"
-                    id="ingredient-quantity" class="form-control" minlength="1" maxlength="50" required>
-                </div>
-              </form> -->
-            </div>
+          </div>
+          <div class="col-12">
+            <AddIngredientForm />
+            <!-- <form @submit.prevent="">
+              <div class="col-6 m-0 p-0">
+                <label class="fs-6" for="ingredient-name">Ingredient Name</label>
+                <input v-model="ingredientData.name" type="text" name="ingredient-name" id="ingredient-name"
+                  class="form-control" minlength="3" maxlength="50" required>
+              </div>
+              <div class="col-3 m-0 p-0">
+                <label class="fs-6" for="ingredient-quantity">Ingredient Quantity</label>
+                <input v-model="ingredientData.quantity" type="text" name="ingredient-quantity"
+                  id="ingredient-quantity" class="form-control" minlength="1" maxlength="50" required>
+              </div>
+            </form> -->
           </div>
         </div>
 
