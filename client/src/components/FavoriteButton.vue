@@ -29,9 +29,9 @@ async function createFavoriteRecipe() {
 
 <template>
   <i v-if="myFavorites.some(favorite => favorite.id == recipe.id)" role="button" @click.prevent="createFavoriteRecipe()"
-    class="mdi mdi-heart mt-1 me-2 fs-3 text-dark text-end"></i>
+    class="mdi mdi-heart opacity-75 mt-1 me-2 fs-3 text-end"></i>
   <i v-else role="button" @click.prevent="createFavoriteRecipe()"
-    class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-dark text-end"></i>
+    class="mdi mdi-heart-outline opacity-75 mt-1 me-2 fs-3 text-end"></i>
 </template>
 
 

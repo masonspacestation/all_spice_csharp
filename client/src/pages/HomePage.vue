@@ -108,17 +108,14 @@ onMounted(() => {
 <template>
   <section class="container">
     <div class="row hero-section rounded rounded-3 shadow mt-2 mb-5">
-      <!-- <img
-        src="https://images.unsplash.com/photo-1588959286493-eb5582aa5f39?q=80&w=2160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        class="" alt=""> -->
     </div>
-    <div class="row add-recipe-button">
-      <button class="btn btn-primary rounded rounded-pill w-auto text-end" id="add-recipe-round" data-bs-toggle="modal"
+    <div class="add-recipe-button w-auto">
+      <button class="btn btn-primary round-button shadow" id="add-recipe-round" data-bs-toggle="modal"
         data-bs-target="#create-recipe-modal">+</button>
-      <button class="btn btn-primary rounded rounded-pill fw-bold px-4 w-auto text-end" id="add-recipe-full"
+      <button class="btn btn-primary rounded rounded-pill fw-bold px-4 shadow" id="add-recipe-full"
         data-bs-toggle="modal" data-bs-target="#create-recipe-modal">+ Add Recipe</button>
     </div>
-    <!-- category filters -->
+    <!-- SECTION category filters -->
     <div class="row justify-content-center text-center mb-1 border-bottom py-0">
       <div v-for="filterObj in filters" :key="filterObj.name" class="col-2">
         <div v-if="filterBy.valueOf() == filterObj.name" role="button" @click="filterBy = filterObj.name">
@@ -137,30 +134,19 @@ onMounted(() => {
         filter</small>
     </div>
 
-
-    <!-- default -->
+    <!-- SECTION recipe card -->
     <div class="row">
-
-      <!-- NOTE recipe card -->
       <div v-for="recipe in recipes" :key="recipe.id" class="col-4 py-3 px-4" role="button" data-bs-toggle="modal"
         data-bs-target="#recipe-modal">
         <RecipeCard :recipe="recipe" @click="setActiveRecipe(recipe.id)" />
-
-
       </div>
-
     </div>
 
-    <!-- filtered view -->
     <div class="row">
       <p>
         The spice must flow 🧿
       </p>
     </div>
-
-
-
-
 
   </section>
   <ModalWrapper modalId="create-recipe-modal">
@@ -173,16 +159,28 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+.round-button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
 .add-recipe-button {
-  // position: absolute;
-  // margin-bottom: 30px;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: auto;
 
   #add-recipe-round {
     display: block;
+    font-weight: bold;
+    color: lightblue;
   }
 
   #add-recipe-full {
     display: none;
+    font-weight: bold;
+    color: lightblue;
   }
 }
 
@@ -193,6 +191,7 @@ onMounted(() => {
 
   #add-recipe-full {
     display: block;
+    height: 3rem;
   }
 }
 

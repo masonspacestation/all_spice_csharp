@@ -133,8 +133,7 @@ async function destroyRecipe(recipeId) {
               <div>
                 <ul class="dropdown-menu text-center w-auto p-1">
                   <i role="button" @click="destroyRecipe(activeRecipe.id)"
-                    class="fs-3 m-2 mdi mdi-delete text-light opacity-75"></i>
-                  <!-- <i class="fs-3 m-2 mdi mdi-heart-outline"></i> -->
+                    class="fs-3 m-2 mdi mdi-delete opacity-75"></i>
                   <FavoriteButton :recipe="activeRecipe" />
                 </ul>
               </div>
