@@ -127,7 +127,7 @@ async function destroyRecipe(recipeId) {
           </div>
           <div class="col-2 text-end">
             <!-- <FavoriteButton /> -->
-            <div v-if="activeRecipe.creatorId = account?.id">
+            <div v-if="activeRecipe.creator.id = account?.id">
               <i role="button" class="mdi mdi-dots-horizontal text-secondary fs-3"></i>
               <!-- <i role="button" @click="destroyRecipe(activeRecipe.id)"
                 class="mdi mdi-delete-outline text-danger opacity-50"></i> -->
@@ -138,7 +138,10 @@ async function destroyRecipe(recipeId) {
         </div>
         <div class="row mt-3">
           <div class="col-8">
-            <h3>Instructions</h3>
+            <div class="row justify-content-between align-items-center">
+              <h3 class="w-auto">Instructions</h3>
+              <i v-if="activeRecipe.creator.id == account?.id" class="mdi mdi-pencil w-auto fs-5 opacity-25"></i>
+            </div>
             <p>
               {{ activeRecipe.instructions }}
             </p>
@@ -151,14 +154,22 @@ async function destroyRecipe(recipeId) {
           <div class="col-4 d-flex flex-column justify-content-between p-0">
             <div class="row">
               <h4>Ingredients</h4>
-              <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-2">
+              <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-1 col-12 ingredient-list-item">
                 <h6 class="fw-bold mb-0">{{ ingredient.name }}</h6>
-                <small class="text-secondary">{{ ingredient.quantity }}</small>
+
+                <div class="row">
+                  <small class="text-secondary col-10">{{ ingredient.quantity }}</small>
+                  <div v-if="activeRecipe.creator.id == account?.id" class="col-1 delete-icon">
+                    <i role="button" @click="destroyIngredient(ingredient.id)"
+                      class="mdi mdi-close-circle-outline text-danger opacity-75 text-end "></i>
+                  </div>
+                </div>
                 <hr class="border-1 mt-0">
               </div>
+
             </div>
           </div>
-          <div class="col-12">
+          <div v-if="activeRecipe.creator.id == account?.id" class="col-12">
             <AddIngredientForm />
             <!-- <form @submit.prevent="">
               <div class="col-6 m-0 p-0">
@@ -182,6 +193,18 @@ async function destroyRecipe(recipeId) {
 
 
 <style lang="scss" scoped>
+.delete-icon {
+  display: none;
+  height: 1em;
+}
+
+.ingredient-list-item:hover {
+  .delete-icon {
+    display: block;
+    // background-color: red;
+  }
+}
+
 .recipe-image {
   // object-position: center;
   // object-fit: cover;
