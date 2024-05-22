@@ -62,20 +62,31 @@ async function createFavoriteRecipe(recipeId) {
 
 <template>
 
-  <div class="recipe-card rounded rounded-3 shadow row justify-content-between">
-    <!-- FIXME make the icon dynamic -->
-    <div class="col-12 d-flex flex-column justify-content-between p-0">
-      <div class="category-icon rounded rounded-pill p-2 mt-3 ms-3 bg-success">
+  <div class="recipe-card rounded rounded-3 shadow row align-items-end">
+
+
+    <!-- <div class="category-icon rounded rounded-pill p-2 mt-3 ms-3 bg-success">
         <h3 class="d-inline mx-1">{{ recipe.icon }}</h3>
         <h3 v-if="recipe.creatorId == account?.id" class="d-inline mx-1">🤌</h3>
+      </div> -->
 
-      </div>
-      <!-- <i role="button" @click="createFavoriteRecipe(recipe.id)"
+
+    <!-- <i role="button" @click="createFavoriteRecipe(recipe.id)"
         class="mdi mdi-heart-outline mt-1 me-2 fs-3 text-light opacity-50 text-end"></i> -->
-      <!-- v-if="favoritedRecipes.includes((favorite) => favoriteId == recipe.id)"  -->
-      <!-- <i role="button" @click="deleteFavoriteRecipe(recipe.id)" class="mdi mdi-heart mt-1 me-2 fs-3 text-end"></i> -->
-      <div class="card-cover rounded-bottom bg-info p-2 m-0">
-        <h3 class="fs-5 text-light">{{ recipe.title }}</h3>
+    <!-- v-if="favoritedRecipes.includes((favorite) => favoriteId == recipe.id)"  -->
+    <!-- <i role="button" @click="deleteFavoriteRecipe(recipe.id)" class="mdi mdi-heart mt-1 me-2 fs-3 text-end"></i> -->
+    <div class="p-0 col-12">
+      <div class="title-cover p-2 pt-0 my-0">
+        <hr class="border-light border-2 p-0 m-0 mb-1 w-75 opacity-100">
+        <h4 class="fs-5 text-light">{{ recipe.title }}</h4>
+      </div>
+      <div class="row card-cover align-items-center rounded-bottom-3 bg-info p-2 pt-3 m-0">
+        <small class="text-light w-auto">By <strong>{{ recipe.creator.name }}</strong></small>
+        <div class="category-icon bg-info border border-light rounded rounded-pill px-2 py-1 ms-auto">
+          <small class="text-light mx-1">{{ recipe.category }}</small>
+          <span class="d-inline mx-1">{{ recipe.categoryTag }}</span>
+          <h6 v-if="recipe.creatorId == account?.id" class="d-inline mx-1">🤌</h6>
+        </div>
       </div>
     </div>
   </div>
@@ -86,14 +97,19 @@ async function createFavoriteRecipe(recipeId) {
 <style lang="scss" scoped>
 .recipe-card {
   height: 30dvh;
-  background-image: v-bind(bgStyle);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), v-bind(bgStyle);
   background-position: center;
   background-size: cover;
 }
 
-.card-cover {
-  height: 30%;
-  // background-color: rgb(148, 148, 148);
+// .card-cover {
+// height: 30%;
+// background-color: rgb(148, 148, 148);
+// }
+
+.title-cover {
+  height: 3em;
+
 }
 
 .category-icon {

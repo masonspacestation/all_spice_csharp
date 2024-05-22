@@ -140,7 +140,7 @@ onMounted(() => {
     <div class="row">
 
       <!-- NOTE recipe card -->
-      <div v-for="recipe in recipes" :key="recipe.id" class="col-3 p-3" role="button" data-bs-toggle="modal"
+      <div v-for="recipe in recipes" :key="recipe.id" class="col-4 py-3 px-4" role="button" data-bs-toggle="modal"
         data-bs-target="#recipe-modal">
         <RecipeCard :recipe="recipe" @click="setActiveRecipe(recipe.id)" />
 

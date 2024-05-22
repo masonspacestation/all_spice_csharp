@@ -132,18 +132,15 @@ async function destroyRecipe(recipeId) {
                 aria-expanded="false"></i>
 
 
-              <!-- Default dropstart button -->
+
               <div>
-                <!-- </button> -->
+
                 <ul class="dropdown-menu text-center w-auto p-1">
-                  <i class="fs-3 m-2 mdi mdi-delete"></i><i class="fs-3 m-2 mdi mdi-heart-outline"></i>
-                  <!-- Dropdown menu links -->
+                  <i role="button" @click="destroyRecipe(activeRecipe.id)" class="fs-3 m-2 mdi mdi-delete"></i>
+                  <!-- <i class="fs-3 m-2 mdi mdi-heart-outline"></i> -->
+                  <FavoriteButton :recipe="activeRecipe" />
                 </ul>
               </div>
-
-
-              <!-- <i role="button" @click="destroyRecipe(activeRecipe.id)"
-                class="mdi mdi-delete-outline text-danger opacity-50"></i> -->
             </div>
           </div>
 
