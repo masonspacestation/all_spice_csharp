@@ -125,10 +125,23 @@ async function destroyRecipe(recipeId) {
           <div class="col-9">
             <h2>{{ activeRecipe.title }}</h2>
           </div>
-          <div class="col-2 text-end">
+          <div class="col-2 text-end ">
             <!-- <FavoriteButton /> -->
             <div v-if="activeRecipe.creator.id = account?.id">
-              <i role="button" class="mdi mdi-dots-horizontal opacity-75 fs-3"></i>
+              <i role="button" class="mdi mdi-dots-horizontal opacity-75 fs-3 " data-bs-toggle="dropdown"
+                aria-expanded="false"></i>
+
+
+              <!-- Default dropstart button -->
+              <div>
+                <!-- </button> -->
+                <ul class="dropdown-menu text-center w-auto p-1">
+                  <i class="fs-3 m-2 mdi mdi-delete"></i><i class="fs-3 m-2 mdi mdi-heart-outline"></i>
+                  <!-- Dropdown menu links -->
+                </ul>
+              </div>
+
+
               <!-- <i role="button" @click="destroyRecipe(activeRecipe.id)"
                 class="mdi mdi-delete-outline text-danger opacity-50"></i> -->
             </div>
