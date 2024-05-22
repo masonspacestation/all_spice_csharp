@@ -10,7 +10,7 @@ defineProps({ modalId: String })
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl w-75" role="document">
       <div class="modal-content">
 
-        <div class="modal-body">
+        <div class="body">
           <slot>
             Swap out modal content
           </slot>
@@ -21,4 +21,9 @@ defineProps({ modalId: String })
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.body {
+  position: relative;
+  flex: 1 1 auto;
+}
+</style>

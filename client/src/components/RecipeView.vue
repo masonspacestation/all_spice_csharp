@@ -115,29 +115,29 @@ async function destroyRecipe(recipeId) {
 <template>
   <div v-if="activeRecipe" class="container-fluid">
     <div class="row justify-content-between">
-      <div class="col-3 overflow-hidde recipe-image">
+      <div class="col-4 overflow-hidden recipe-image">
         <!-- <img class="recipe-image" :src="activeRecipe.img" alt=""> -->
       </div>
 
 
-      <div class="col-9">
-        <div class="row justify-content-between">
+      <div class="col-8">
+        <div class="row justify-content-between bg-secondary p-2 mb-3 text-light text-opacity-75">
           <div class="col-9">
             <h2>{{ activeRecipe.title }}</h2>
           </div>
           <div class="col-2 text-end">
             <!-- <FavoriteButton /> -->
             <div v-if="activeRecipe.creator.id = account?.id">
-              <i role="button" class="mdi mdi-dots-horizontal text-secondary fs-3"></i>
+              <i role="button" class="mdi mdi-dots-horizontal opacity-75 fs-3"></i>
               <!-- <i role="button" @click="destroyRecipe(activeRecipe.id)"
                 class="mdi mdi-delete-outline text-danger opacity-50"></i> -->
             </div>
           </div>
 
-
+          <!-- SECTION instructions -->
         </div>
-        <div class="row mt-3">
-          <div class="col-8">
+        <div class="row justify-content-between p-2 pe-4">
+          <div class="col-8 p-3">
             <div class="row justify-content-between align-items-center">
               <h3 class="w-auto">Instructions</h3>
               <i v-if="activeRecipe.creator.id == account?.id" class="mdi mdi-pencil w-auto fs-5 opacity-25"></i>
@@ -151,7 +151,8 @@ async function destroyRecipe(recipeId) {
                 id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required></textarea>
             </div>
           </div>
-          <div class="col-4 d-flex flex-column justify-content-between p-0">
+          <!-- SECTION ingredients -->
+          <div class="col-3 d-flex flex-column justify-content-between p-0">
             <div class="row">
               <h4>Ingredients</h4>
               <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-1 col-12 ingredient-list-item">
@@ -161,12 +162,12 @@ async function destroyRecipe(recipeId) {
                   <small class="text-secondary col-10">{{ ingredient.quantity }}</small>
                   <div v-if="activeRecipe.creator.id == account?.id" class="col-1 delete-icon">
                     <i role="button" @click="destroyIngredient(ingredient.id)"
-                      class="mdi mdi-close-circle-outline text-danger opacity-75 text-end "></i>
+                      class="mdi mdi-close-circle-outline text-danger opacity-75"></i>
                   </div>
                 </div>
                 <hr class="border-1 mt-0">
               </div>
-
+              <!-- SECTION add ingredient button -->
             </div>
           </div>
           <div v-if="activeRecipe.creator.id == account?.id" class="col-12">
