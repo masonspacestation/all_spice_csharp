@@ -112,9 +112,11 @@ onMounted(() => {
         src="https://images.unsplash.com/photo-1588959286493-eb5582aa5f39?q=80&w=2160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         class="" alt=""> -->
     </div>
-    <div class="row">
-      <button class="btn btn-primary rounded rounded-pill w-auto text-end" data-bs-toggle="modal"
+    <div class="row add-recipe-button">
+      <button class="btn btn-primary rounded rounded-pill w-auto text-end" id="add-recipe-round" data-bs-toggle="modal"
         data-bs-target="#create-recipe-modal">+</button>
+      <button class="btn btn-primary rounded rounded-pill fw-bold px-4 w-auto text-end" id="add-recipe-full"
+        data-bs-toggle="modal" data-bs-target="#create-recipe-modal">+ Add Recipe</button>
     </div>
     <!-- category filters -->
     <div class="row justify-content-center text-center mb-1 border-bottom py-0">
@@ -171,6 +173,27 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+.add-recipe-button {
+
+  #add-recipe-round {
+    display: block;
+  }
+
+  #add-recipe-full {
+    display: none;
+  }
+}
+
+.add-recipe-button:hover {
+  #add-recipe-round {
+    display: none;
+  }
+
+  #add-recipe-full {
+    display: block;
+  }
+}
+
 .home {
   display: grid;
   height: 80vh;
