@@ -174,6 +174,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .add-recipe-button {
+  // position: absolute;
+  // margin-bottom: 30px;
 
   #add-recipe-round {
     display: block;
