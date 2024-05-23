@@ -9,7 +9,7 @@ import { Modal } from "bootstrap";
 const recipeData = ref({
   title: '',
   category: '',
-  // instructions: 'wake up, make coffee, boom! breakfast!',
+  instructions: "Click here to write your recipe's instructions.",
   img: '',
 })
 
@@ -17,7 +17,7 @@ function resetFirstForm() {
   recipeData.value = {
     title: '',
     category: '',
-    // instructions: '',
+    instructions: '',
     img: '',
   }
 }
@@ -56,8 +56,8 @@ async function createRecipe() {
           Create your own recipe!
         </h3>
       </div>
-      <div class="row px-2 ps-lg-2 pe-lg-0">
-        <div class="col-12 col-lg-8 pt-3 pt-lg-4 d-flex flex-column justify-content-around">
+      <div class="row px-2 ps-lg-2 pe-lg-0 border-bottom">
+        <div class="col-12 col-lg-8 pt-3 pe-lg-3 pt-lg-4 d-flex flex-column justify-content-around">
 
           <div class="row form-floating p-1">
             <input v-model="recipeData.title" type="text" name="recipe-title" id="recipe-title"
@@ -86,6 +86,7 @@ async function createRecipe() {
             </div>
           </div>
 
+          <!-- <hr class="border-2 border-success opacity-100 m-0 p-0"> -->
         </div>
         <!-- end of form fields -->
 
@@ -95,9 +96,9 @@ async function createRecipe() {
       </div>
 
 
-      <div class="row px-1 py-2">
+      <div class="row px-1 pb-2">
         <div class="col-12 col-lg-6 my-1 my-lg-3"><button type="reset" data-bs-toggle="modal" data-bs-target="modal"
-            class="btn btn-secondary w-100">Cancel</button></div>
+            class="btn btn-outline-secondary border-2 text-dark w-100">Cancel</button></div>
         <div class="col-12 col-lg-6 my-1 my-lg-3"><button class="btn btn-primary w-100">Create Recipe</button>
         </div>
       </div>
@@ -112,7 +113,8 @@ async function createRecipe() {
 <style lang="scss" scoped>
 .img-preview {
   width: 100%;
-  min-height: 12dvh;
+  height: 25dvh;
   object-fit: cover;
+  object-position: center;
 }
 </style>

@@ -22,7 +22,7 @@ const bgStyle = computed(() => `url(${activeRecipe.value?.img})`)
 const recipeData = ref({
   title: '',
   category: '',
-  instructions: 'wake up, make coffee, boom! breakfast!',
+  instructions: 'Write the instructions for your recipe here',
   img: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 })
 
@@ -182,18 +182,6 @@ async function destroyRecipe(recipeId) {
           </div>
           <div v-if="activeRecipe.creator.id == account?.id" class="col-12">
             <AddIngredientForm />
-            <!-- <form @submit.prevent="">
-              <div class="col-6 m-0 p-0">
-                <label class="fs-6" for="ingredient-name">Ingredient Name</label>
-                <input v-model="ingredientData.name" type="text" name="ingredient-name" id="ingredient-name"
-                  class="form-control" minlength="3" maxlength="50" required>
-              </div>
-              <div class="col-3 m-0 p-0">
-                <label class="fs-6" for="ingredient-quantity">Ingredient Quantity</label>
-                <input v-model="ingredientData.quantity" type="text" name="ingredient-quantity"
-                  id="ingredient-quantity" class="form-control" minlength="1" maxlength="50" required>
-              </div>
-            </form> -->
           </div>
         </div>
 

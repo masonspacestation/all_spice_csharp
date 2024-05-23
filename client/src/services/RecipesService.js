@@ -11,7 +11,10 @@ class RecipesService{
   async createRecipe(recipeData) {
 const response = await api.post('api/recipes', recipeData)
 console.log('Creating new recipe', response.data);
+const newRecipe = new Recipe(response.data)
+AppState.recipes.push(newRecipe)
   }
+  
   async getRecipeById(recipeId) {
     const response = await api.get(`api/recipes/${recipeId}`)
     console.log(`found recipe with id: ${recipeId}`, response.data);

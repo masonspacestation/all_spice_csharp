@@ -32,7 +32,6 @@ class IngredientsService{
     console.log(`Deleting ingredient ${ingredientId}`), response.data;
     ingredients.splice(ingredientIndex, 1)
  }
-
 }
 
 
