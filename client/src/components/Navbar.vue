@@ -22,14 +22,14 @@ function toggleTheme() {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm  px-3">
+  <nav class="navbar navbar-expand-sm bg-none d-flex align-items-start align-items-lg-center px-4 pt-2">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h3>🧿 AllSpice</h3>
+        <h3 class="text-white">🧿 AllSpice</h3>
         <!-- <img alt="logo" src="../assets/img/cw-logo.png" height="45" /> -->
       </div>
     </router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+    <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

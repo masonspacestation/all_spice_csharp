@@ -7,9 +7,9 @@ import Navbar from './components/Navbar.vue'
 
 <template>
   <header class="container">
-    <Navbar />
+    <!-- <Navbar /> -->
   </header>
-  <main>
+  <main class="pb-4">
     <router-view />
   </main>
   <footer class="bg-dark">
@@ -28,6 +28,11 @@ import Navbar from './components/Navbar.vue'
   --main-height: calc(100vh - 32px - 64px);
 }
 
+main {
+  background-color: #2c3a47;
+  background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
 
 footer {
   min-height: 48px;

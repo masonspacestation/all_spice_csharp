@@ -106,8 +106,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="container">
+  <section class="container mt-5">
     <div class="row hero-section rounded rounded-3 shadow mt-2 mx-0 mb-5">
+      <Navbar />
     </div>
     <div class="add-recipe-button w-auto">
       <button class="btn btn-primary round-button shadow" id="add-recipe-round" data-bs-toggle="modal"
