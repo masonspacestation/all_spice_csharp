@@ -147,9 +147,9 @@ async function destroyRecipe(recipeId) {
           <!-- SECTION instructions -->
         </div>
         <div class="row justify-content-between p-2 pe-4">
-          <div class="col-8 p-3">
+          <div class="col-8 p-2">
             <div class="row justify-content-between align-items-center">
-              <h3 class="w-auto">Instructions</h3>
+              <h4 class="w-auto">Instructions</h4>
               <i v-if="activeRecipe.creator.id == account?.id" class="mdi mdi-pencil w-auto fs-5 opacity-25"></i>
             </div>
             <p>
@@ -162,7 +162,7 @@ async function destroyRecipe(recipeId) {
             </div>
           </div>
           <!-- SECTION ingredients -->
-          <div class="col-3 d-flex flex-column justify-content-between p-0">
+          <div class="col-3 d-flex flex-column justify-content-between p-0 pt-2 ps-3 ingredients">
             <div class="row">
               <h4>Ingredients</h4>
               <div v-for="ingredient in ingredients" :key="ingredient.id" class="mb-1 col-12 ingredient-list-item">
@@ -208,6 +208,10 @@ async function destroyRecipe(recipeId) {
 .delete-icon {
   display: none;
   height: 1em;
+}
+
+.ingredients {
+  border-left: 2px rgba(173, 169, 183, 0.5) solid;
 }
 
 .ingredient-list-item:hover {

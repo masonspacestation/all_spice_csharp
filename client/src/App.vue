@@ -12,8 +12,12 @@ import Navbar from './components/Navbar.vue'
   <main>
     <router-view />
   </main>
-  <footer class="bg-dark text-light">
-    <!-- Made with 💖 by CodeWorks -->
+  <footer class="bg-dark">
+    <div class="container justify-content-center">
+      <p class="text-success mt-4">
+        The spice must flow 🧿
+      </p>
+    </div>
   </footer>
 </template>
 
@@ -26,8 +30,6 @@ import Navbar from './components/Navbar.vue'
 
 
 footer {
-  display: grid;
-  place-content: center;
-  height: 32px;
+  min-height: 48px;
 }
 </style>
