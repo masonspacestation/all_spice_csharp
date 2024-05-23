@@ -59,12 +59,6 @@ CREATE TABLE favorites (
     UNIQUE (accountId, recipeId)
 );
 
-SELECT favorites.*, recipes.*, accounts.*
-FROM
-    favorites
-    JOIN recipes ON favorites.recipeId = recipes.id
-    JOIN accounts ON favorites.accountId = accounts.id
-WHERE
-    favorites.id = LAST_INSERT_ID();
+SELECT * FROM favorites;
 
 DROP TABLE favorites

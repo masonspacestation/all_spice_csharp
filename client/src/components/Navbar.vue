@@ -26,7 +26,6 @@ function toggleTheme() {
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <h3 class="text-white">🧿 AllSpice</h3>
-        <!-- <img alt="logo" src="../assets/img/cw-logo.png" height="45" /> -->
       </div>
     </router-link>
     <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -35,22 +34,7 @@ function toggleTheme() {
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ms-auto">
-        <li>
-          <!-- <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link> -->
-          <!-- FIXME this button will turn back on to launch new recipe form modal -->
-          <!-- <button @click="createRecipe()">create
-            recipe</button> -->
-        </li>
       </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <div>
-        <!-- <button class="btn text-light" @click="toggleTheme"
-          :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-          <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
-        </button> -->
-      </div>
       <Login />
     </div>
   </nav>
