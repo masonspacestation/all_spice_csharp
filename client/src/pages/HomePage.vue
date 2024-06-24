@@ -12,7 +12,6 @@ import NewRecipeFirstForm from "../components/NewRecipeFirstForm.vue";
 import RecipeView from "../components/RecipeView.vue";
 import { ingredientsService } from "../services/IngredientsService.js";
 
-// const recipe = computed(() => AppState.recipes)
 
 const filterBy = ref('all')
 const account = computed(() => AppState.account)
@@ -24,10 +23,6 @@ const recipes = computed(() => {
 })
 
 const filters = [
-  // {
-  //   name: 'all',
-  //   title: 'All'
-  // },
   {
     name: 'breakfast',
     title: 'Breakfast',
@@ -76,28 +71,6 @@ async function setActiveRecipe(recipeId) {
     Pop.toast('Could not find that recipe')
   }
 }
-
-async function getIngredients(recipeId) {
-  try {
-    AppState.ingredients = null
-    await recipesService.getRecipeIngredients(recipeId)
-  } catch (error) {
-    Pop.toast('Could not get ingredients', 'error')
-  }
-}
-// async function getFavoriteRecipes() {
-//   try {
-//     await accountService.getFavoriteRecipes()
-//   }
-//   catch (error) {
-//     Pop.toast('Could not get favorite recipes', "error");
-//     console.error(error);
-//   }
-
-// }
-
-
-
 
 onMounted(() => {
   getAllRecipes()

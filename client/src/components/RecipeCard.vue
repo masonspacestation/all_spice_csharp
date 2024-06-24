@@ -46,17 +46,6 @@ const filters = [
   },
 ]
 
-async function createFavoriteRecipe(recipeId) {
-  try {
-    recipeData.recipeId = recipeId
-    await favoritesService.createFavoriteRecipe(recipeData)
-  } catch (error) {
-    Pop.toast("Could not add to your favorites", "error")
-    console.error("Error adding to favorites", error)
-  }
-  Pop.toast('Added Favorite!', 'success')
-}
-
 </script>
 
 

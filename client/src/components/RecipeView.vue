@@ -37,18 +37,6 @@ function resetFirstForm() {
   }
 }
 
-async function destroyFavoriteRecipe(favoriteId) {
-  try {
-    const wantsToDestroy = await Pop.confirm("Are you sure you want to delete this favorite recipe?")
-    if (!wantsToDestroy) return
-
-    await favoritesService.destroyFavoriteRecipe(favoriteId)
-  } catch (error) {
-    Pop.toast('Could not delete favorite recipe', 'error')
-    console.error(error)
-  }
-}
-
 async function destroyIngredient(ingredientId) {
   try {
     const wantsToDestroy = await Pop.confirm("Are you sure you want to delete this ingredient? It might change the flavor or consistency of your dish.")
@@ -125,7 +113,6 @@ async function updateRecipe(recipeId) {
   <div v-if="activeRecipe" class="container-fluid">
     <div class="row justify-content-between">
       <div class="col-4 overflow-hidden recipe-image">
-        <!-- <img class="recipe-image" :src="activeRecipe.img" alt=""> -->
       </div>
 
 

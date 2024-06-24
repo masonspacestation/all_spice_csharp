@@ -33,7 +33,7 @@ public class FavoritesService
   internal string DestroyFavorite(int favoriteId, string userId)
   {
     FavoritedRecipe favoritedRecipeToDestroy = GetFavoriteById(favoriteId);
-    if (favoritedRecipeToDestroy.CreatorId != userId)
+    if (favoritedRecipeToDestroy.Creator.Id != userId)
     {
       throw new Exception("Sorry, this is someone else's favorite recipe. You can't delete it.");
     }

@@ -10,12 +10,12 @@ import { api } from "./AxiosService.js"
 class FavoritesService{
   async destroyFavoriteRecipe(favoriteId) {
 const favorites = AppState.favoritedRecipes;
-const favoriteIndex = favorites.findIndex(favorite => favorite.id == favoriteId)
-
+const favoriteIndex = favorites.findIndex(favorite => favorite.favoriteId == favoriteId)
+console.log('service', favoriteId);
     const response = await api.delete(`api/favorites/${favoriteId}`)
     console.log(`Favorite to delete`, response.data);
 
-    if(favoriteIndex == -1) throw new Error("Find by index for favorites needs adjusted")
+    if(favoriteIndex == -1) throw new Error("Find by index for favorites needs adjusted");
       favorites.splice(favoriteIndex, 1)
   }
 

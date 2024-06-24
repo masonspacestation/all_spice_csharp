@@ -55,7 +55,6 @@ async getRecipeIngredients(recipeId) {
   AppState.ingredients = ingredients
 }
 
-// FIXME this is started, but not referenced from anywhere, and probably not right
 async updateRecipe(recipeData, recipeId){
   const response = await api.put(`api/recipes/${recipeId}`, recipeData)
   console.log(`Updating recipe: ${recipeData.id}`, response.data);
