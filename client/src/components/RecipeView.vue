@@ -23,7 +23,7 @@ const recipeData = ref({
   // title: '',
   // category: '',
   instructions: '',
-  id: activeRecipe.value?.id,
+  // id: activeRecipe.value?.id,
   // img: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 })
 
@@ -32,7 +32,7 @@ function resetFirstForm() {
     // title: '',
     // category: '',
     instructions: '',
-    id: '',
+    // id: activeRecipe.value?.id,
     // img: '',
   }
 }
@@ -75,9 +75,11 @@ async function destroyRecipe(recipeId) {
   Modal.getOrCreateInstance("#recipe-modal").hide()
 }
 
-async function updateRecipe() {
+async function updateRecipe(recipeId) {
   try {
-    await recipesService.updateRecipe(recipeData.value)
+    // recipeData.value.id = recipeId
+    console.log('updating recipe', activeRecipe.value.id);
+    await recipesService.updateRecipe(recipeData.value, recipeId)
   } catch (error) {
     Pop.toast('Could not edit recipe', 'error')
     console.error(error)
@@ -174,7 +176,7 @@ async function updateRecipe() {
                   id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required
                   :title="`Add instructions for ${activeRecipe.title} recipe.`"
                   :placeholder="`Add instructions for ${activeRecipe.title} recipe.`"></textarea>
-                <button @click="updateRecipe()" title="Save changes">Save</button>
+                <button @click="updateRecipe(activeRecipe.id)" title="Save changes">Save</button>
               </div>
             </div>
           </div>
