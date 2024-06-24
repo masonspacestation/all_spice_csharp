@@ -9,7 +9,7 @@ import { Modal } from "bootstrap";
 const recipeData = ref({
   title: '',
   category: '',
-  instructions: "Click here to write your recipe's instructions.",
+  instructions: '',
   img: '',
 })
 

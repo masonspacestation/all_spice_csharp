@@ -15,7 +15,7 @@ import { ingredientsService } from "../services/IngredientsService.js";
 // const recipe = computed(() => AppState.recipes)
 
 const filterBy = ref('all')
-// const account = computed(() => AppState.account)
+const account = computed(() => AppState.account)
 // const favoritedRecipes = computed(() => AppState.favoritedRecipes)
 
 const recipes = computed(() => {
@@ -110,12 +110,15 @@ onMounted(() => {
     <div class="row hero-section rounded rounded-3 shadow mt-2 mx-0 mb-5">
       <Navbar />
     </div>
-    <div class="add-recipe-button w-auto">
+
+    <!-- SECTION add recipe floating button -->
+    <div v-if="account" class="add-recipe-button w-auto">
       <button class="btn btn-primary round-button shadow" id="add-recipe-round" data-bs-toggle="modal"
         data-bs-target="#create-recipe-modal">+</button>
       <button class="btn btn-primary rounded rounded-pill fw-bold px-4 shadow" id="add-recipe-full"
         data-bs-toggle="modal" data-bs-target="#create-recipe-modal">+ Add Recipe</button>
     </div>
+
     <!-- SECTION category filters -->
     <div class="row justify-content-center text-center mb-1 filter-buttons-row py-0">
       <div v-for="filterObj in filters" :key="filterObj.name" class="col col-lg-2">

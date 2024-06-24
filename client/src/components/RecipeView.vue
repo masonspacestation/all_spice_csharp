@@ -20,22 +20,22 @@ const account = computed(() => AppState.account)
 const bgStyle = computed(() => `url(${activeRecipe.value?.img})`)
 
 const recipeData = ref({
-  title: '',
-  category: '',
-  instructions: 'Write the instructions for your recipe here',
-  img: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  // title: '',
+  // category: '',
+  instructions: '',
+  id: activeRecipe.value?.id,
+  // img: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 })
 
 function resetFirstForm() {
   recipeData.value = {
-    title: '',
-    category: '',
+    // title: '',
+    // category: '',
     instructions: '',
-    img: '',
+    id: '',
+    // img: '',
   }
 }
-
-
 
 async function destroyFavoriteRecipe(favoriteId) {
   try {
@@ -61,7 +61,6 @@ async function destroyIngredient(ingredientId) {
   }
 }
 
-
 async function destroyRecipe(recipeId) {
   try {
     const wantsToDestroy = await Pop.confirm("Are you sure you want to delete this recipe? What will we eat??")
@@ -74,6 +73,15 @@ async function destroyRecipe(recipeId) {
   }
   Pop.toast("Recipe Deleted!", "success")
   Modal.getOrCreateInstance("#recipe-modal").hide()
+}
+
+async function updateRecipe() {
+  try {
+    await recipesService.updateRecipe(recipeData.value)
+  } catch (error) {
+    Pop.toast('Could not edit recipe', 'error')
+    console.error(error)
+  }
 }
 
 // async function getIngredientById(ingredientId) {
@@ -108,7 +116,6 @@ async function destroyRecipe(recipeId) {
 // onMounted(() =>
 //   getRecipeById(recipe.recipe.id)
 // )
-
 </script>
 
 
@@ -150,15 +157,25 @@ async function destroyRecipe(recipeId) {
           <div class="col-8 p-2">
             <div class="row justify-content-between align-items-center">
               <h4 class="w-auto">Instructions</h4>
-              <i v-if="activeRecipe.creator.id == account?.id" class="mdi mdi-pencil w-auto fs-5 opacity-25"></i>
+              <!-- NOTE can edit instructions if recipe creator -->
+              <i v-if="activeRecipe.creator.id == account?.id" class="mdi mdi-pencil w-auto fs-5 opacity-25"
+                title="Edit Recipe"></i>
             </div>
-            <p>
-              {{ activeRecipe.instructions }}
-            </p>
-            <div class="">
-              <label for="recipe-instructions"></label>
-              <textarea v-model="recipeData.instructions" type="text" rows="6" name="recipe-instructions"
-                id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required></textarea>
+            <!-- NOTE shows instructions if not null -->
+            <!-- <div v-if="activeRecipe.instructions != null"> -->
+            <div>
+              <p>
+                {{ activeRecipe.instructions }}
+              </p>
+              <!-- NOTE shows text area if instructions are null -->
+              <div v-if="activeRecipe.creator.id == account?.id && activeRecipe.instructions == ''">
+                <label for="recipe-instructions"></label>
+                <textarea v-model="recipeData.instructions" type="text" rows="6" name="recipe-instructions"
+                  id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required
+                  :title="`Add instructions for ${activeRecipe.title} recipe.`"
+                  :placeholder="`Add instructions for ${activeRecipe.title} recipe.`"></textarea>
+                <button @click="updateRecipe()" title="Save changes">Save</button>
+              </div>
             </div>
           </div>
           <!-- SECTION ingredients -->
@@ -172,7 +189,7 @@ async function destroyRecipe(recipeId) {
                   <small class="text-secondary col-10">{{ ingredient.quantity }}</small>
                   <div v-if="activeRecipe.creator.id == account?.id" class="col-1 delete-icon">
                     <i role="button" @click="destroyIngredient(ingredient.id)"
-                      class="mdi mdi-close-circle-outline text-danger opacity-75"></i>
+                      class="mdi mdi-close-circle-outline text-danger opacity-75" title="Delete Ingredient"></i>
                   </div>
                 </div>
                 <hr class="border-1 mt-0">
