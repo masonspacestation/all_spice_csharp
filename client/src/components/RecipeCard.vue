@@ -60,8 +60,7 @@ const filters = [
 
       <div class="row card-cover align-items-center rounded-bottom-3 bg-success p-2 pt-3 m-0">
         <small class="text-light w-auto">By <strong>{{ recipe.creator.name }}</strong></small>
-        <div class="category-icon  border border-light rounded rounded-pill px-2 py-1 ms-auto"
-          style="background-color:bg-breakfast">
+        <div class="category-icon  border border-light rounded rounded-pill px-2 py-1 ms-auto">
           <!-- <small class="text-light mx-1">{{ recipe.category }}</small> -->
           <span class="d-inline mx-1">{{ recipe.categoryTag }}</span>
           <h6 v-if="recipe.creatorId == account?.id" class="d-inline mx-1">🤌</h6>
