@@ -112,11 +112,11 @@ async function updateRecipe(recipeId) {
 <template>
   <div v-if="activeRecipe" class="container-fluid">
     <div class="row justify-content-between">
-      <div class="col-4 overflow-hidden recipe-image">
+      <div class="col-12 col-md-4 overflow-hidden recipe-image">
       </div>
 
 
-      <div class="col-8">
+      <div class="col-12 col-md-8">
         <div class="row justify-content-between bg-secondary p-2 mb-3 text-light text-opacity-75">
           <div class="col-9">
             <h2>{{ activeRecipe.title }}</h2>
@@ -143,7 +143,7 @@ async function updateRecipe(recipeId) {
           <!-- SECTION instructions -->
         </div>
         <div class="row justify-content-between p-2 pe-4">
-          <div class="col-8 p-2">
+          <div class="col-12 col-md-8 p-2">
             <div class="row justify-content-between align-items-center">
               <h4 class="w-auto">Instructions</h4>
               <!-- NOTE can edit instructions if recipe creator -->

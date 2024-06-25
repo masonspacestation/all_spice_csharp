@@ -29,14 +29,14 @@ function resetFirstForm() {
 async function createRecipe() {
   try {
     const newRecipe = await recipesService.createRecipe(recipeData.value)
-    Modal.getOrCreateInstance('#new-recipe-modal').hide()
+    Modal.getOrCreateInstance('#create-recipe-modal').hide()
     Pop.toast('New recipe created!')
     console.log('New recipe!');
+    resetFirstForm()
   } catch (error) {
     Pop.toast('Could not create recipe')
     console.error('Error creating recipe', 'error')
   }
-  resetFirstForm()
 }
 
 // async function modalCancel() {

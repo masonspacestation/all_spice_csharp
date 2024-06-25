@@ -29,7 +29,7 @@ async function createFavoriteRecipe() {
 
 async function destroyFavoriteRecipe() {
   try {
-    console.log('favorite id', thisFavorite.value.favoriteId);
+    console.log('favorite id to delete', thisFavorite.value.favoriteId);
     await favoritesService.destroyFavoriteRecipe(thisFavorite.value.favoriteId)
   } catch (error) {
     Pop.toast('Could not delete favorite recipe', 'error')
