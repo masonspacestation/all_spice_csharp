@@ -13,6 +13,7 @@ const response = await api.post('api/recipes', recipeData)
 console.log('Creating new recipe', response.data);
 const newRecipe = new Recipe(response.data)
 AppState.recipes.push(newRecipe)
+return newRecipe
   }
   
   async getRecipeById(recipeId) {

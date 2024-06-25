@@ -96,18 +96,20 @@ onMounted(() => {
     <div class="row justify-content-center text-center mb-1 filter-buttons-row py-0">
       <div v-for="filterObj in filters" :key="filterObj.name" class="col col-lg-2">
         <div v-if="filterBy.valueOf() == filterObj.name" role="button" @click="filterBy = filterObj.name">
-          <h6 class="py-3 text-white text-uppercase">{{ filterObj.title }}</h6>
+          <h6 class="py-3 text-white text-uppercase" :title="`Filter recipes for ${filterObj.title}`">{{ filterObj.title
+            }}</h6>
           <hr class="border-3 border-success opacity-100 w-75 mx-auto my-0 py-0">
         </div>
         <div v-else role="button" @click="filterBy = filterObj.name" class="filter-button rounded">
-          <h6 class="py-3 text-secondary fw-light text-uppercase">{{ filterObj.title }}</h6>
+          <h6 class="py-3 text-platinum fw-light text-uppercase" :title="`Filter recipes for ${filterObj.title}`">{{
+            filterObj.title }}</h6>
         </div>
       </div>
 
     </div>
     <div class="row justify-content-end clear-filter-row mb-5"><small v-if="filterBy.valueOf() != 'all'"
         class="text-end text-white opacity-50 filter-button cancel-filter-button w-auto py-auto rounded" role="button"
-        @click="filterBy = 'all'"><i class="mdi mdi-close-circle-outline"></i> clear
+        @click="filterBy = 'all'" title="Clear Filter"><i class="mdi mdi-close-circle-outline"></i> clear
         filter</small>
     </div>
 
@@ -115,7 +117,8 @@ onMounted(() => {
     <div class="row">
       <div v-for="recipe in recipes" :key="recipe.id" class="col-12 col-md-6 col-lg-4 py-3 px-4" role="button"
         data-bs-toggle="modal" data-bs-target="#recipe-modal">
-        <RecipeCard :recipe="recipe" @click="setActiveRecipe(recipe.id)" />
+        <RecipeCard :recipe="recipe" @click="setActiveRecipe(recipe.id)"
+          :title="`Click to view recipe for ${recipe.title}`" />
       </div>
     </div>
 

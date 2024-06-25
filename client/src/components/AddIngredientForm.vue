@@ -36,9 +36,9 @@ async function createIngredient() {
 <template>
   <section class="container p-0 m-0 text-center text-lg-end">
 
-    <div class="dropdown">
-      <button type="button" class="btn btn-primary dropdown-toggle fs-6" data-bs-toggle="dropdown" aria-expanded="false"
-        data-bs-auto-close="outside" title="Add Ingredient">
+    <div class="btn-group dropup w-100">
+      <button type="button" class="btn btn-primary dropdown-toggle fs-6 w-100" data-bs-toggle="dropdown"
+        aria-expanded="false" data-bs-auto-close="outside" title="Add Ingredient">
         Add Ingredient
       </button>
       <form @submit.prevent="createIngredient()"

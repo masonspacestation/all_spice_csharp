@@ -21,8 +21,8 @@ export default class Pop {
         confirmButtonText,
         showCancelButton: true,
         reverseButtons: true,
-        confirmButtonColor: 'var(--bs-primary)',
-        cancelButtonColor: 'var(--bs-secondary)'
+        confirmButtonColor: 'var(--bs-info)',
+        cancelButtonColor: 'var(--bs-warning)'
       })
       if (res.isConfirmed) {
         return true

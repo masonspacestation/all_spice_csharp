@@ -7,14 +7,14 @@
 
 $light-theme: (
   "primary": #D89C1B,
-  "secondary": #ADA9B7,
+  "secondary": #947ec9,
   // "secondary": #6f829a,
   "success": #41ad92,
-  "info": #25CCF7,
+  "info": #4B6E95,
   "warning": #cf5c36,
-  "danger": #cf5c36,
+  "danger": #873D48,
   "page": #2C3A47,
-  "text": #ADA9B7,
+  "platinum": #D9D7DD,
   // "breakfast":#f4f4f4,
   // "lunch":#f4f4f4,
   // "dinner":#f4f4f4,
@@ -94,6 +94,10 @@ darken($value, calc($color-variation / 2)))
 }
 
 ;
+
+.text-platinum {
+  color: #D9D7DD;
+}
 
 .text-#{$color} {
   --bs-color: #{$value};

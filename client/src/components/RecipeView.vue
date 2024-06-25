@@ -74,50 +74,18 @@ async function updateRecipe(recipeId) {
   }
 }
 
-// async function getIngredientById(ingredientId) {
-//   try {
-//     await ingredientsService.getIngredientById(ingredientId)
-//   } catch (error) {
-//     Pop.toast(`Could not get ingredient by ID: ${ingredientId}`)
-//     console.error(error)
-//   }
-// }
-
-// async function getFavoriteById(favoriteId) {
-//   try {
-//     await favoritesService.getFavoriteById(favoriteId)
-//   } catch (error) {
-//     Pop.toast("Could not get favorite by Id")
-//     console.error(error)
-//   }
-// }
-
-
-
-// async function getRecipeById(recipeId) {
-//   try {
-//     console.log(`Looking for the recipe with Id ${recipeId}`);
-//     await recipesService.setActiveRecipe(recipeId)
-//   } catch (error) {
-//     Pop.toast('Could not find that recipe')
-//   }
-// }
-
-// onMounted(() =>
-//   getRecipeById(recipe.recipe.id)
-// )
 </script>
 
 
 <template>
   <div v-if="activeRecipe" class="container-fluid">
     <div class="row justify-content-between">
-      <div class="col-12 col-md-4 overflow-hidden recipe-image">
+      <div class="col-12 col-lg-4 overflow-hidden recipe-image">
       </div>
 
 
-      <div class="col-12 col-md-8">
-        <div class="row justify-content-between bg-secondary p-2 mb-3 text-light text-opacity-75">
+      <div class="col-12 col-lg-8">
+        <div class="row justify-content-between bg-info p-2 mb-3 text-light text-opacity-75">
           <div class="col-9">
             <h2>{{ activeRecipe.title }}</h2>
           </div>
@@ -125,7 +93,6 @@ async function updateRecipe(recipeId) {
             <div v-if="activeRecipe.creator.id == account?.id" class="text-end btn-group dropstart">
               <i role="button" class="mdi mdi-dots-horizontal fs-3" data-bs-toggle="dropdown"
                 data-bs-auto-close="outside" aria-expanded="false"></i>
-
               <div>
                 <ul class="dropdown-menu text-center w-auto p-1">
                   <i role="button" @click="destroyRecipe(activeRecipe.id)"
@@ -143,12 +110,12 @@ async function updateRecipe(recipeId) {
           <!-- SECTION instructions -->
         </div>
         <div class="row justify-content-between p-2 pe-4">
-          <div class="col-12 col-md-8 p-2">
+          <div class="col-12 col-lg-8 p-2">
             <div class="row justify-content-between align-items-center">
               <h4 class="w-auto">Instructions</h4>
               <!-- NOTE can edit instructions if recipe creator -->
-              <i v-if="activeRecipe.creator.id == account?.id" class="mdi mdi-pencil w-auto fs-5 opacity-25"
-                title="Edit Recipe"></i>
+              <!-- <i v-if="activeRecipe.creator.id == account?.id" class="mdi mdi-pencil w-auto fs-5 opacity-25"
+                title="Edit Recipe"></i> -->
             </div>
             <!-- NOTE shows instructions if not null -->
             <!-- <div v-if="activeRecipe.instructions != null"> -->
@@ -163,7 +130,12 @@ async function updateRecipe(recipeId) {
                   id="recipe-instructions" class="form-control" minlength="10" maxlength="5000" required
                   :title="`Add instructions for ${activeRecipe.title} recipe.`"
                   :placeholder="`Add instructions for ${activeRecipe.title} recipe.`"></textarea>
-                <button @click="updateRecipe(activeRecipe.id)" title="Save changes">Save</button>
+                <div class="row justify-content-end">
+                  <div class="col-12 col-lg-6 text-end mt-2">
+                    <button class="btn btn-info w-100" @click="updateRecipe(activeRecipe.id)"
+                      title="Save changes">Save</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -186,7 +158,7 @@ async function updateRecipe(recipeId) {
               <!-- SECTION add ingredient button -->
             </div>
           </div>
-          <div v-if="activeRecipe.creator.id == account?.id" class="col-12">
+          <div v-if="activeRecipe.creator.id == account?.id" class="col-12 d-flex flex-column justify-content-end">
             <AddIngredientForm />
           </div>
         </div>
@@ -221,5 +193,16 @@ async function updateRecipe(recipeId) {
   background-image: v-bind(bgStyle);
   background-position: center;
   background-size: cover;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  // min-height: 50vh;
+}
+
+main {
+  flex-grow: 1;
+  // min-height: 20dvh;
 }
 </style>
