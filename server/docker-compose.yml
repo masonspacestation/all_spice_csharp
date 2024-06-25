@@ -1,9 +1,9 @@
 version: '3'
 services:
   app:
-    image: your-dockerhub-username/all_spice_csharp:latest
+    image: adrewmasondev/all_spice_csharp:latest
     restart: unless-stopped
     env_file:
       - all_spice_csharp-env
     ports:
-      - "7045:80"
+      - "7046:80"
