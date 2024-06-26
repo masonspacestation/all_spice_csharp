@@ -62,7 +62,3 @@ CREATE TABLE favorites (
 SELECT * FROM favorites;
 
 DROP TABLE favorites;
-
--- CREATE TABLE MyAWSServer.favorites
--- AS
--- SELECT * FROM cooperative_mountain_fe2c50_db.favorites;
