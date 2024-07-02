@@ -23,7 +23,7 @@ Ingredients are simple to add or remove while looking at a recipe. The form to a
 
 - Visitors can see all recipes (login not required)
 
--Users can sort recipes by category
+- Users can sort recipes by category
 
 - All users have a public profile page
 
